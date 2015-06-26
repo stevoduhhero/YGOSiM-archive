@@ -27,6 +27,22 @@ Manual Yu-Gi-Oh! simulator.
   </tr>
 </table>
 
+## Getting Started
+
+First, start up MongoDB:
+
+```bash
+$ mongod
+```
+
+Then, open up another terminal window:
+
+```bash
+$ git clone https://github.com/stevoduhhero/YGOSiM.git && cd YGOSiM
+$ npm install
+$ node lib/server.js
+```
+
 ## License
 
 [MIT](LICENSE)
