@@ -1,0 +1,22 @@
+OMFG GO TO THE BIN DIRECTORY AND DO THIS
+	./mongod --fork --logpath /home/stevoduhhero/mongodb.log --dbpath data/ate
+ALSO MAKE SURE THE mongodb.log file has good permissions
+
+i had to do this:
+	- download mongodb from website
+	- create the directory "data" in C:/
+	- move contents from c:/program files/mongodb bin to the "data" directory
+	- on "data" create a subdirectory with the name of your mongo database... in this case "ate"
+	- open a CMD prompt on C:/data
+	- start the mongodb server by doing "mongod --dbpath ate" ... replace "ate" with the database name you want
+
+
+
+linux start with:
+sudo service mongod start
+
+windows start width:
+click mongo.bat
+
+drop schema
+>> models.LadderModel.db.collections.laddermodels.drop()

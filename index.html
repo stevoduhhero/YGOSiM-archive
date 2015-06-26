@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>YGOSiM</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=0"/>
+		<meta name="description" content="Manual Yu-Gi-Oh! simulator.">
+		<link rel="stylesheet" href="/css/primer.css">
+		<link rel="stylesheet" href="/css/chat.css">
+		<link rel="stylesheet" href="/css/game.css">
+	</head>
+	<body>
+		<div class="pms">
+			<div class="rel">
+				<div class="pmers"></div>
+				<div class="pmlogs"></div>
+				<input type="text" class="pmmessage" />
+			</div>
+		</div>
+		<div id="homeScreen">
+			<div class="header">
+				<h1>YGOSiM</h1>
+				<div class="userbar"></div>
+			</div>
+			<div id="content">
+				<div id="leftSide">
+					<div class="rooms">
+						<div id="roomadd" class="rel">+</div>
+					</div>
+					<div class="chat">
+						<div class="logs"></div>
+						<div class="users"></div>
+						<div class="input"><textarea class="message"></textarea></div>
+					</div>
+				</div>
+				<div id="rightSide">
+					<center>
+						<br />
+						<button id="findDuel" class="btn">Find Duel</button>
+						<button id="deckbuilder" class="btn">Builder</button>
+						<button id="ladder" class="btn">Ladder</button>
+						<div id="duels"></div>
+					</center>
+				</div>
+			</div>
+			<div id="challenges"></div>
+			<iframe id="builder" src="./loading.html"></iframe>
+		</div>
+		<div id="game">
+			<div class="relative">
+				<div id="leftPanel" class="row">
+					<div class="rel">
+						<div class="abs scrollNoScroll">
+							<input class="changePoints minusPoints" type="text" value="- Double click to inverse." />
+							<div class="cardDescription"></div>
+							<div class="resultButtons">
+								<button id="admit">Admit Defeat</button>
+								<button id="draw">Offer Draw</button>
+								<button>Leave</button>
+								<div>
+									<img id="counter" title="Add a Counter (not working)" src="./img/counter.jpg" height="50" /><img id="token" title="Summon a Token" src="./img/token.jpg" height="50" /><img id="coinFlip" title="Flip a Coin" src="./img/coin.jpg" height="50" /><img id="rollDice" title="Roll a Die" src="./img/dice.jpg" height="50" />
+								</div>
+							</div>
+							<div class="gameChat">
+								<div class="rel">
+									<div class="gameLogs"></div>
+									<input class="gameInput" type="text" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="banishedColumn row unselectable">
+					<div class="o" id="youpoints"></div>
+					<div class="o" id="opppoints"></div>
+					<div class="oppBanishedZone o" id="oppbanished"></div>
+				</div>
+				<div class="row mainTable unselectable">
+					<div id="opphand"></div>
+					<div id="youhand"></div>
+					<!-- just a little bit of room so that i can put the #opphand here !-->
+					<div class="fieldHandSpacer row"></div>
+					<div id="oppSide" class="fieldContainer row">
+						<div class="threeVerticalZones row">
+							<div class="singleVerticalZone row o" id="oppdeck"></div>
+							<div class="oppredpendulum singleVerticalZone row o" id="opp12"></div>
+							<div class="singleVerticalZone row o" id="oppgrave"></div>
+						</div>
+						<div class="monsterSpellZones row">
+							<div class="monsterSpellZonesDivison row">
+								<div class="fieldZone row o" id="opp9"></div>
+								<div class="fieldZone row o" id="opp8"></div>
+								<div class="fieldZone row o" id="opp7"></div>
+								<div class="fieldZone row o" id="opp6"></div>
+								<div class="fieldZone row o" id="opp5"></div>
+							</div>
+							<div class="monsterSpellZonesDivison row">
+								<div class="fieldZone row o" id="opp4"></div>
+								<div class="fieldZone row o" id="opp3"></div>
+								<div class="fieldZone row o" id="opp2"></div>
+								<div class="fieldZone row o" id="opp1"></div>
+								<div class="fieldZone row o" id="opp0"></div>
+							</div>
+							<div class="middleOptions">
+								<div class="field phases"><div id="dp" class="phase">DP</div><div id="sp" class="phase">SP</div><div id="m1" class="phase">M1</div><div id="bp" class="phase">BP</div><div id="m2" class="phase">M2</div><div id="ep" class="phase">EP</div><div id="nextTurn" class="phase">Next Turn</div></div>
+							</div>
+							<div id="youstatus" class="status"></div>
+							<div id="oppstatus" class="status"></div>
+						</div>
+						<div class="threeVerticalZones row">
+							<div class="singleVerticalZone row o" id="oppextra"></div>
+							<div class="oppbluependulum singleVerticalZone row o" id="opp11"></div>
+							<div class="singleVerticalZone row o" id="opp10"></div>
+						</div>
+					</div>
+					<div id="youSide" class="fieldContainer row">
+						<div class="threeVerticalZones row">
+							<div class="singleVerticalZone row o" id="you10"></div>
+							<div class="youbluependulum singleVerticalZone row o" id="you11"></div>
+							<div class="singleVerticalZone row o" id="youextra"></div>
+						</div>
+						<div class="monsterSpellZones row">
+							<div class="monsterSpellZonesDivison row">
+								<div class="fieldZone row o" id="you0"></div>
+								<div class="fieldZone row o" id="you1"></div>
+								<div class="fieldZone row o" id="you2"></div>
+								<div class="fieldZone row o" id="you3"></div>
+								<div class="fieldZone row o" id="you4"></div>
+							</div>
+							<div class="monsterSpellZonesDivison row">
+								<div class="fieldZone row o" id="you5"></div>
+								<div class="fieldZone row o" id="you6"></div>
+								<div class="fieldZone row o" id="you7"></div>
+								<div class="fieldZone row o" id="you8"></div>
+								<div class="fieldZone row o" id="you9"></div>
+							</div>
+						</div>
+						<div class="threeVerticalZones row">
+							<div class="singleVerticalZone row o" id="yougrave"></div>
+							<div class="youredpendulum singleVerticalZone row o" id="you12"></div>
+							<div class="singleVerticalZone row o" id="youdeck"></div>
+						</div>
+					</div>
+					<!-- just a little bit of room so that i can put the #youhand here !-->
+					<div class="fieldHandSpacer2 row"></div>
+				</div>
+				<div class="banishedColumn row unselectable">
+				<div class="youBanishedZone o" id="youbanished"></div>
+				</div>
+			</div>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+		<script src="./js/ate/globals.js"></script>
+		<script src="./js/ate/client.js"></script>
+		<script src="./js/ate/socket.js"></script>
+		<script src="./js/gameDomEvents.js"></script>
+		<script src="./js/cardImg.js"></script>
+		<script src="./js/Game.js"></script>
+		<script src="./js/data/db.js"></script>
+		<script src="./js/data/card.js"></script>
+	</body>
+</html>
