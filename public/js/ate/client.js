@@ -45,7 +45,7 @@ var ate = {
 					data.splice(0, 2);
 					var deckString = data.join('|');
 					if (isNaN(id)) {
-						alert("The id '" + id + "' is invalid. Maybe create a function that gets the id based on this deck name.");
+						swal("Bad ID", "The id '" + id + "' is invalid. Maybe create a function that gets the id based on this deck name.", "error");
 					}
 					app.deck[id] = deckString;
 				},
@@ -121,7 +121,7 @@ var ate = {
 				var deck = form.find('#deck').val();
 				var tier = form.find('#tier').val();
 				console.log(form)
-				if (!deck) return alert('No deck.');
+				if (!deck) return swal('Oops!', 'No deck.', 'error');
 				var obj = {
 					opponent: opponent,
 					tier: tier,
@@ -945,4 +945,4 @@ var ate = {
 $(function() {
 	ate.init();
 });
-ate.resize();
+ate.resize();
