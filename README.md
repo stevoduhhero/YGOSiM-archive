@@ -1,4 +1,4 @@
-# YGOSiM
+# [YGOSiM](http://ygosim.com)
 
 Manual Yu-Gi-Oh! simulator.
 
