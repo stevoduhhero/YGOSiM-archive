@@ -234,6 +234,8 @@ body, html {
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(function() {
+	swal = alert;
+	if (window.top.swal) swal = window.top.swal;
 	function doneLoading() {
 		app.db = exports.dbConvert;
 		$("#search").keyup(function(e) {
