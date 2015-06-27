@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 				files: {
 					'public/build/js/main.js': [
 						'public/js/vendor/sweetalert.min.js',
-						'public/js/ate/global.js',
+						'public/js/ate/globals.js',
 						'public/js/ate/client.js',
 						'public/js/ate/socket.js',
 						'public/js/gameDomEvents.js',
