@@ -3,12 +3,18 @@ $("#findDuel").click(function() {
 		var insides = "",
 			id = new Date() / 1;
 		insides += '<div id="daddy' + id + '" onclick="$(\'#baby' + id + '\').remove();$(this).remove();" style="width: 100%;height: 100%;background: rgba(255, 255, 255, 0.25);cursor: pointer;position: absolute;top: 0;left:0 ;"></div>';
-		insides += '<div id="baby' + id + '" style="position: absolute;top: 50%;left: 50%;width: 300px;height: 150px;margin-left: -150px;margin-top: -75px;background: rgb(101, 101, 101); text-align: center;color: white;">';
-		insides += '<h2 style="margin: 0.83em;">Select A Deck:</h2>';
-		insides += '<select style="color: black;" id="selectDeck' + id + '">';
+		insides += '<div id="baby' + id + '" class="search">';
+		insides += '<div><label>Deck:</label>';
+		insides += '<select id="selectDeck' + id + '">';
 		for (var i in app.decks) insides += '<option value="' + i + '">' + app.decks[i] + '</option>';
 		insides += '</select>';
-		insides += ' <button class="btn" onclick="var el = $(\'#selectDeck' + id + '\');$(\'#daddy' + id + '\').click();if (el.val() !== null) {app.socket.emit(\'search\', {deck: app.deck[el.val()], name: app.decks[el.val()]});}">Find Duel</button>';
+		insides += '</div>';
+		insides += '<div><label>Format:</label>';
+		insides += '<select id="tier' + id + '">';
+		for (var i in Formats) insides += '<option>' + Formats[i] + '</option>';
+		insides += '</select>';
+		insides += '</div>';
+		insides += '<button class="btn" onclick="var tier = $(\'#tier' + id + '\').val();var el = $(\'#selectDeck' + id + '\');$(\'#daddy' + id + '\').click();if (el.val() !== null || toId(tier) === \'random\') {app.socket.emit(\'search\', {tier: tier, deckString: app.deck[el.val()], deck: app.decks[el.val()]});}">Find Duel</button>';
 		insides += '</div>';
 		$("body").append(insides);
 	} else app.socket.emit('search');
@@ -111,7 +117,8 @@ $("body").on("click", ".promptOpaqueness", function() {
 	var el = $("<div class=\"counter\"></div>").width(w).height(h).css({
 		top: (touch.pageY - (h / 2)) + "px",
 		left: (touch.pageX - (w / 2)) + "px",
-		bottom: "auto"
+		bottom: "auto",
+		"z-index": 100000
 	}).appendTo("body");
 	var drag = {};
 	drag.offset = {

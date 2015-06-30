@@ -139,9 +139,8 @@ var ate = {
 			challenge.append('<h4>Challenge ' + fromTo + ' <span id="opponent">' + otherUser + '</span></h4>');
 			challenge.append('<hr />');
 			var tierChoices = '';
-			var ray = ["Random", "Advanced", "Traditional", "Unlimited"];
-			for (var i in ray) {
-				tierChoices += '<option>' + ray[i] + '</option>';
+			for (var i in Formats) {
+				tierChoices += '<option>' + Formats[i] + '</option>';
 			}
 			var tiers = $('<div><label>Type:</label> <select id="tier">' + tierChoices + '</select></div>');
 			if (tier) {

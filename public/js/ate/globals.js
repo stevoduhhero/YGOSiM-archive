@@ -1,3 +1,4 @@
+var Formats = ["Random", "Advanced", "Traditional", "Unlimited"];
 // http://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
 function hashCode(str) { // java String#hashCode
 	str = toId(str);

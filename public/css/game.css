@@ -48,7 +48,7 @@
 	border: 1px dashed white;
 	border-radius: 20px;
 	box-shadow: 5px 10px 20px black;
-	z-index: 100000;
+	z-index: 301;
 	left: 0;
 	bottom: 0;
 	width: 50px;
