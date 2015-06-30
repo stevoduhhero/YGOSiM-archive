@@ -1414,15 +1414,14 @@ $("#ladder").click(function() {
 	})();
 	(function() {
 		var select = $('<select><option value="">Select a format</option></select>');
-		var formats = ["Advanced"];
-		for (var i = 0; i < formats.length; i++) {
-			select.append('<option>' + formats[i] + '</option>');
+		for (var i = 0; i < Formats.length; i++) {
+			select.append('<option>' + Formats[i] + '</option>');
 		}
 		select.on("change", function() {
 			if (!this.value) return;
 			app.socket.emit('ladder', {tier: this.value});
 		});
-		select.val(formats[0]);
+		select.val(Formats[0]);
 		leaderboard.append(select);
 	})();
 	(function() {
