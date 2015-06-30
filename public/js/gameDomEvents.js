@@ -127,7 +127,7 @@ $("body").on("click", ".promptOpaqueness", function() {
 		var zone = false;
 		$(this.dragging).remove();
 		
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < 11; i++) {
 			var el = $("#you" + i);
 			var pos = el.offset();
 			if (touch.pageX > pos.left && touch.pageX < pos.left + el.width()) {
