@@ -21,7 +21,6 @@ module.exports = function(grunt) {
 			js: {
 				files: {
 					'public/build/js/main.js': [
-						'public/js/vendor/sweetalert.min.js',
 						'public/js/ate/globals.js',
 						'public/js/ate/client.js',
 						'public/js/ate/socket.js',
@@ -36,10 +35,9 @@ module.exports = function(grunt) {
 			css: {
 				files: {
 					'public/build/css/main.css': [
-						'public/css/primer.css',
+						'public/css/normalize.css',
 						'public/css/chat.css',
-						'public/css/game.css',
-						'public/css/sweetalert.css'
+						'public/css/game.css'
 					]
 				}
 			}
@@ -48,7 +46,7 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
-					'public/build/js/main.min.js': ['public/build/js/main.js'],
+					'public/build/js/main.min.js': ['public/build/js/main.js']
 				}
 			}
 		},

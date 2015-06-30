@@ -234,8 +234,6 @@ body, html {
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(function() {
-	swal = alert;
-	if (window.top.swal) swal = window.top.swal;
 	function doneLoading() {
 		app.db = exports.dbConvert;
 		$("#search").keyup(function(e) {
@@ -722,7 +720,7 @@ var app = {
 		insides += '<div id="baby' + id + '" style="position: absolute;top: 50%;left: 50%;width: 300px;height: 150px;margin-left: -150px;margin-top: -75px;background: rgb(62, 84, 190); text-align: center;color: white;">';
 		insides += '<h2>SAVE DECK AS:</h2>';
 		insides += '<input type="text" id="saveDeckAs" />';
-		insides += '<button onclick="var el = $(\'#saveDeckAs\');var alertion = app.saveDeck(el.val());if (!alertion) {$(\'#daddy' + id + '\').click();} else {swal(alertion);el.val(\'\').focus();}">SAVE</button>';
+		insides += '<button onclick="var el = $(\'#saveDeckAs\');var alertion = app.saveDeck(el.val());if (!alertion) {$(\'#daddy' + id + '\').click();} else {alert(alertion);el.val(\'\').focus();}">SAVE</button>';
 		insides += '</div>';
 		$("body").append(insides);
 		$("#baby" + id + " input").val(((name === "UNTITLED") ? "" : name)).focus().select();
