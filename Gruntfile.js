@@ -35,6 +35,7 @@ module.exports = function(grunt) {
 			css: {
 				files: {
 					'public/build/css/main.css': [
+						'public/css/normalize.css',
 						'public/css/chat.css',
 						'public/css/game.css'
 					]
