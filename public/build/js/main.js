@@ -225,7 +225,7 @@ var ate = {
 				var deck = form.find('#deck').val();
 				var tier = form.find('#tier').val();
 				console.log(form)
-				if (!deck) return swal('Oops!', 'No deck.', 'error');
+				if (!deck && toId(tier) !== "random") return swal('Oops!', 'No deck.', 'error');
 				var obj = {
 					opponent: opponent,
 					tier: tier,
@@ -242,7 +242,12 @@ var ate = {
 			var challenge = $('<div id="chall' + otherUser + '" class="challenge"></div>');
 			challenge.append('<h4>Challenge ' + fromTo + ' <span id="opponent">' + otherUser + '</span></h4>');
 			challenge.append('<hr />');
-			var tiers = $('<div><label>Type:</label> <select id="tier"><option>Advanced</option></select></div>');
+			var tierChoices = '';
+			var ray = ["Random", "Advanced", "Traditional", "Unlimited"];
+			for (var i in ray) {
+				tierChoices += '<option>' + ray[i] + '</option>';
+			}
+			var tiers = $('<div><label>Type:</label> <select id="tier">' + tierChoices + '</select></div>');
 			if (tier) {
 				tiers.find('select').val(tier).prop("disabled", true);
 			}
@@ -1309,7 +1314,7 @@ $("body").on("click", ".promptOpaqueness", function() {
 		var zone = false;
 		$(this.dragging).remove();
 		
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < 11; i++) {
 			var el = $("#you" + i);
 			var pos = el.offset();
 			if (touch.pageX > pos.left && touch.pageX < pos.left + el.width()) {
