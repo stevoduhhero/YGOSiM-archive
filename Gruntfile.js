@@ -35,7 +35,6 @@ module.exports = function(grunt) {
 			css: {
 				files: {
 					'public/build/css/main.css': [
-						'public/css/primer.css',
 						'public/css/chat.css',
 						'public/css/game.css'
 					]
@@ -46,7 +45,7 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
-					'public/build/js/main.min.js': ['public/build/js/main.js'],
+					'public/build/js/main.min.js': ['public/build/js/main.js']
 				}
 			}
 		},
