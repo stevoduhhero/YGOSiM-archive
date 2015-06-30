@@ -21,7 +21,6 @@ module.exports = function(grunt) {
 			js: {
 				files: {
 					'public/build/js/main.js': [
-						'public/js/vendor/sweetalert.min.js',
 						'public/js/ate/globals.js',
 						'public/js/ate/client.js',
 						'public/js/ate/socket.js',
@@ -38,8 +37,7 @@ module.exports = function(grunt) {
 					'public/build/css/main.css': [
 						'public/css/primer.css',
 						'public/css/chat.css',
-						'public/css/game.css',
-						'public/css/sweetalert.css'
+						'public/css/game.css'
 					]
 				}
 			}

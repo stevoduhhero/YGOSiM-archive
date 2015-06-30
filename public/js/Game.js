@@ -582,7 +582,7 @@ Game.prototype.nextQueue = function() {
 	var event = currentQueue[0];
 	var data = currentQueue[1];
 	switch (event) {
-		default: swal("Oops!", "No case for event: '" + event + "'", "error");
+		default: alert("Oops!", "No case for event: '" + event + "'", "error");
 		break;
 		
 		case 'reset':
