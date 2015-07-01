@@ -60,7 +60,7 @@ Run `grunt build` to concat and minify CSS and JavaScript files.
 Run `grunt iteration` to watch CSS and JavaScript files and as you make changes,
 it minifies the CSS and JavaScript files.
 
-You can also run `grunt test` to use linters to check if you made any erors
+You can also run `grunt test` to use linters to check if you made any errors
 in your code.
 
 ## License
