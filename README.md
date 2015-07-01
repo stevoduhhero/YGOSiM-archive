@@ -1,5 +1,9 @@
 # [YGOSiM](http://ygosim.com)
 
+[![Build Status](https://travis-ci.org/CreaturePhil/YGOSiM.svg)](https://travis-ci.org/CreaturePhil/YGOSiM)
+[![Dependency Status](https://david-dm.org/stevoduhhero/YGOSiM.svg)](https://david-dm.org/stevoduhhero/YGOSiM)
+[![devDependency Status](https://david-dm.org/stevoduhhero/YGOSiM/dev-status.svg)](https://david-dm.org/stevoduhhero/YGOSiM#info=devDependencies)
+
 Manual Yu-Gi-Oh! simulator.
 
 ## Prerequisites
