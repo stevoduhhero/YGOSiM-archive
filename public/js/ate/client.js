@@ -1,4 +1,16 @@
 var app = {};
+
+// emoticons - demfeels
+var emoticons = ["batming","blu","china","coo","creep","cry","dad1","dad2","dafuq","datass","dazza1","dd","deal","dealw","disgust","drow","duckwat","duclol","Dx","eleming","evild","excite","falone","feel","feelsal","feelsbd","feelsbeard","feelsbn","feelsbr","feelsbu","feelscanada","feelsce","feelscommy","feelscr","feelscute","feelsdd","feelsde","feelsdr","feelsduke","feelseye","feelsgd","feelsgn","feelsgt","feelshitler","feelshp","feelshr","feelsht","feelsjew","feelsmario","feelsmd","feelsmoke","feelsms","feelsmug","feelsnv","feelsok","feelsold","feelspink","feelsq","feelsrs","feelssc","feelsscr","feelssp","feelsusa","feelsvp","feelswg","feelswp","feelsws","feelsww","feelszb","fliptbl","foreveralone","fuu","fuu2","fuumar","fyeah","g","goatse","gtfo","hellyeah","hface","hipnig","hmm","how","how3","how4","kid1","ling","lolnig","man","maybe","megusta","ming","mit","mit3","mit4","mog","nface","nface2","nggawat","nggwat","nicetit","nigcook","nigcry","nigglet","nighuh","nigig","niglad","nigleaf","niglol","nigmar","nigmonk","nignig","nignod","nigoof","nigrin","nigwho","nigya","ning","no","nomegusta","notbad","notsure","ohgod","okay","okay2","omd","omg","oshit","pedo","pface","pff","pirate","pirate2","santa","santrl","seewat","serious","sir","smellsgd","smugob","srs","srsno","taylor","ting","trldrum","trlfing","trollface","w","wat","who","win1","wtf","wtf2","wut","xa","XD","xd2","xe","yay","yds","yeayou","yes","yface","yuno","2cute","ahuevo","aing","alakno","allfeel","awd","babed","fukya",/* these are all the crappy new emotes pixieworld has added */"fakesloth","banana","cottonball","cottoncandy","craydada","daavey2","dada","dada1","davey","davey1","davey3","david","dogie","garde","garde1","garde2","garde3","garde4","lolli","mvlution","mvlution1","nyan","ohyeah","osha","pika","pika2","pix","pixie","pixie1","stevo","swalot","sylveon","sylveon1","sylveon2","sylveon3","sylveon4","sylveon5","sylveon6","troll","windy","windy1","windy2","windy3","windy4","pyon","cortex","feelspika"];
+var patterns = [];
+var metachars = /[[\]{}()*+?.\\|^$\-,&#\s]/g;
+
+for (var i = 0, len = emoticons.length; i < len; i++) {
+	patterns.push('(:' + emoticons[i].replace(metachars, '\\$&') + ':)');
+}
+
+var patternRegex = new RegExp(patterns.join('|'), 'g');
+
 var ate = {
 	init: function() {
 		app = this;
@@ -496,7 +508,23 @@ var ate = {
 		Room.prototype.chatParse = function(name, message, pm, deltatime) {
 			var addTime = '';
 			if (!helpers.isMobile()) addTime = timestamp();
-			return addTime + '<b><font color="' + hashColor(name.substr(1)) + '" class="username">' + escapeHTML(name) + ':</b></font> ' + urlify(escapeHTML(message));
+
+			// url and escaping html
+			message = urlify(escapeHTML(message));
+
+			// emoticons
+			message = message.replace(patternRegex, function(match) {
+				match = match.slice(1, -1);
+				return '<img src="https://raw.github.com/stevoduhhero/datfeels/master/' + match + '.gif" title="' + match + '" />';
+			});
+
+			// __italics__
+			message = message.replace(/\_\_([^< ](?:[^<]*?[^< ])?)\_\_(?![^<]*?<\/a)/g, '<i>$1</i>');
+
+			// **bold**
+			message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>');
+
+			return addTime + '<b><font color="' + hashColor(name.substr(1)) + '" class="username">' + escapeHTML(name) + ':</b></font> ' + message;
 		},
 		Room.prototype.joinLeaveTemplate = function() {
 			var buff = $('<div><span class="jcont"><span class="jlog"></span> joined</span><span class="lcont"><span class="and"> AND </span><span class="llog"></span> left</span></div>');
