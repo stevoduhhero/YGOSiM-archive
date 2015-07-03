@@ -2,13 +2,13 @@ var app = {};
 
 // emoticons - demfeels
 var emoticons = ["batming","blu","china","coo","creep","cry","dad1","dad2","dafuq","datass","dazza1","dd","deal","dealw","disgust","drow","duckwat","duclol","Dx","eleming","evild","excite","falone","feel","feelsal","feelsbd","feelsbeard","feelsbn","feelsbr","feelsbu","feelscanada","feelsce","feelscommy","feelscr","feelscute","feelsdd","feelsde","feelsdr","feelsduke","feelseye","feelsgd","feelsgn","feelsgt","feelshitler","feelshp","feelshr","feelsht","feelsjew","feelsmario","feelsmd","feelsmoke","feelsms","feelsmug","feelsnv","feelsok","feelsold","feelspink","feelsq","feelsrs","feelssc","feelsscr","feelssp","feelsusa","feelsvp","feelswg","feelswp","feelsws","feelsww","feelszb","fliptbl","foreveralone","fuu","fuu2","fuumar","fyeah","g","goatse","gtfo","hellyeah","hface","hipnig","hmm","how","how3","how4","kid1","ling","lolnig","man","maybe","megusta","ming","mit","mit3","mit4","mog","nface","nface2","nggawat","nggwat","nicetit","nigcook","nigcry","nigglet","nighuh","nigig","niglad","nigleaf","niglol","nigmar","nigmonk","nignig","nignod","nigoof","nigrin","nigwho","nigya","ning","no","nomegusta","notbad","notsure","ohgod","okay","okay2","omd","omg","oshit","pedo","pface","pff","pirate","pirate2","santa","santrl","seewat","serious","sir","smellsgd","smugob","srs","srsno","taylor","ting","trldrum","trlfing","trollface","w","wat","who","win1","wtf","wtf2","wut","xa","XD","xd2","xe","yay","yds","yeayou","yes","yface","yuno","2cute","ahuevo","aing","alakno","allfeel","awd","babed","fukya",/* these are all the crappy new emotes pixieworld has added */"fakesloth","banana","cottonball","cottoncandy","craydada","daavey2","dada","dada1","davey","davey1","davey3","david","dogie","garde","garde1","garde2","garde3","garde4","lolli","mvlution","mvlution1","nyan","ohyeah","osha","pika","pika2","pix","pixie","pixie1","stevo","swalot","sylveon","sylveon1","sylveon2","sylveon3","sylveon4","sylveon5","sylveon6","troll","windy","windy1","windy2","windy3","windy4","pyon","cortex","feelspika"];
-var emoteURL = [];
+var emoteURL = {};
 var patterns = [];
 var metachars = /[[\]{}()*+?.\\|^$\-,&#\s]/g;
 
 for (var i = 0, len = emoticons.length; i < len; i++) {
 	patterns.push('(:' + emoticons[i].replace(metachars, '\\$&') + ':)');
-	emoteURL[i] = 'https://raw.github.com/stevoduhhero/datfeels/master/' + emoticons[i] + '.gif';
+	emoteURL[emoticons[i]] = 'https://raw.github.com/stevoduhhero/datfeels/master/' + emoticons[i] + '.gif';
 	(new Image()).src = emoteURL[i]; //preload images
 }
 
