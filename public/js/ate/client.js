@@ -9,7 +9,6 @@ var metachars = /[[\]{}()*+?.\\|^$\-,&#\s]/g;
 for (var i = 0, len = emoticons.length; i < len; i++) {
 	patterns.push('(:' + emoticons[i].replace(metachars, '\\$&') + ':)');
 	emoteURL[emoticons[i]] = 'https://raw.github.com/stevoduhhero/datfeels/master/' + emoticons[i] + '.gif';
-	(new Image()).src = emoteURL[i]; //preload images
 }
 
 var patternRegex = new RegExp(patterns.join('|'), 'g');
