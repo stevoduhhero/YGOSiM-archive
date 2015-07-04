@@ -13,13 +13,6 @@ module.exports = function(grunt) {
 			files: files
 		},
 
-		jscs: {
-			src: files,
-			options: {
-				config: '.jscsrc'
-			}
-		},
-
 		concat: {
 			js: {
 				files: {
@@ -71,12 +64,12 @@ module.exports = function(grunt) {
 
 	});
 
-	grunt.registerTask('test', ['jshint', 'jscs']);
+	grunt.registerTask('test', ['jshint']);
 
 	grunt.registerTask('build', ['concat', 'uglify', 'cssmin']);
 
 	grunt.registerTask('iteration', ['watch']);
 
-	grunt.registerTask('default', ['jshint', 'jscs', 'watch']);
+	grunt.registerTask('default', ['jshint', 'watch']);
 
 };
