@@ -1,0 +1,12 @@
+{
+    "-W009": false, 
+    "-W010": false,
+    "-W041": false,
+    "-W082": false,
+    "eqeqeq": false,
+    "eqnull": true,
+    "evil": true,
+    "funcscope": true,
+    "shadow": true,
+    "sub": true
+}

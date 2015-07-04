@@ -1069,7 +1069,7 @@ Game.prototype.contextHover = function(el) {
 		width: el.width() + "px"
 	}).appendTo('body');
 	var changes = {height: contextMenu.height() + "px"};
-	var callback = undefined;
+	var callback;
 	if (!id) {
 		//animate the context menu to move up with the card animation
 		changes.bottom = ($("body").height() - $("#youhand").offset().top) + "px";
