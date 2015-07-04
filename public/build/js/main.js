@@ -238,7 +238,7 @@ var ate = {
 				var opponent = form.find('#opponent').text();
 				var deck = form.find('#deck').val();
 				var tier = form.find('#tier').val();
-				console.log(form)
+				console.log(form);
 				if (!deck && toId(tier) !== "random") return alert('Oops!', 'No deck.', 'error');
 				var obj = {
 					opponent: opponent,
@@ -631,7 +631,7 @@ var ate = {
 			message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>');
 
 			return addTime + '<b><font color="' + hashColor(name.substr(1)) + '" class="username">' + escapeHTML(name) + ':</b></font> ' + message;
-		},
+		};
 		Room.prototype.joinLeaveTemplate = function() {
 			var buff = $('<div><span class="jcont"><span class="jlog"></span> joined</span><span class="lcont"><span class="and"> AND </span><span class="llog"></span> left</span></div>');
 			buff.find('.jcont').hide();
@@ -2763,7 +2763,7 @@ Game.prototype.contextHover = function(el) {
 		width: el.width() + "px"
 	}).appendTo('body');
 	var changes = {height: contextMenu.height() + "px"};
-	var callback = undefined;
+	var callback;
 	if (!id) {
 		//animate the context menu to move up with the card animation
 		changes.bottom = ($("body").height() - $("#youhand").offset().top) + "px";
