@@ -16,6 +16,41 @@ var patternRegex = new RegExp(patterns.join('|'), 'g');
 var ate = {
 	init: function() {
 		app = this;
+		app.notifications = 0;
+		app.baseTitle = document.title;
+		app.clearNotifications = function() {
+			this.notifications = 0;
+			document.title = this.baseTitle;
+			app.changeFavicon("default");
+		};
+		app.changeFavicon = function(type) {
+			var baseURL = window.location.protocol + "//" + window.location.host + "/";
+			var newURL;
+			var c_type = toId($("#dynamic-favicon").attr("href").replace(baseURL, "").slice(0, -3));
+			if (type === "default") {
+				newURL = "./favicon.ico";
+			} else {
+				//alternate between the two
+				if (c_type === "favicon") {
+					newURL = "./faviconBlink.ico";
+				} else newURL = "./favicon.ico";
+			}
+			$("#dynamic-favicon").attr("href", newURL);
+		};
+		app.addNotification = function() {
+			if (window.focused) return;
+			this.notifications++;
+			document.title = this.baseTitle + " (" + this.notifications + ")";
+			var init_loop = function() {
+				if (window.focused) return;
+				app.changeFavicon();
+				loop();
+			};
+			var loop = function() {
+				setTimeout(init_loop, 1000);
+			};
+			init_loop();
+		};
 		app.parseURL = function() {
 			var path = window.location.pathname;
 			if (path.split('replay-').length - 1 > 0) {
@@ -347,6 +382,7 @@ var ate = {
 		}
 	},
 	newPM: function(sender, receiver, msg) {
+		app.addNotification();
 		if (this.userid === toId(sender)) {
 			var you = sender;
 			var person = receiver;
@@ -786,6 +822,12 @@ var ate = {
 		$("#p" + id).remove();
 	},
 	domEvents: function() {
+		$(window).focus(function() {
+			window.focused = true;
+			app.clearNotifications();
+		}).blur(function() {
+			window.focused = false;
+		});
 		$(window).on('resize', this.resize);
 		$("body").on("click", function() {
 			$("#userdetails").remove();

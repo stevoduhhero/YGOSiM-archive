@@ -368,6 +368,7 @@ table {
 	position: absolute;
 	bottom: 0;
 	right: 0;
+	z-index: 9000;
 }
 .challenge {
 	width: 300px;

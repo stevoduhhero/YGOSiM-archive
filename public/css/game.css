@@ -196,8 +196,11 @@
 	margin-top: 3.5%;
 }
 .risenCard {
-	margin-bottom: 3.5%;
-	margin-top: 0% !important;
+	margin-bottom: 3.5% !important;
+	margin-top: 0!important;
+	padding: 0 !important;
+	-webkit-animation: none !important;
+	animation: none !important;
 }
 #youhand img:hover {
 	margin-bottom: 3.5%;
@@ -632,17 +635,19 @@
 	text-decoration: underline;
 }
 .targetedCard {
-	outline: 2px dashed red;
+	background: rgb(215, 229, 0);
 	-webkit-animation: targetCardAnim 0.5s infinite;
 	animation: targetCardAnim 0.5s infinite;
+	padding: 4px;
+	margin: -4px;
 }
 @-webkit-keyframes targetCardAnim {
-	0%, 100% {outline-color: red;outline-width: 2px;}
-	50% {outline-color: darkred;outline-width: 4px;}
+	0%, 100% {padding: 4px;margin: -4px;}
+	50% {padding: 0px;margin: 0px;}
 }
 @keyframes targetCardAnim {
-	0%, 100% {outline-color: red;outline-width: 2px;}
-	50% {outline-color: darkred;outline-width: 4px;}
+	0%, 100% {padding: 4px;margin: -4px;}
+	50% {padding: 0px;margin: 0px;}
 }
 .attackableZone {
 	cursor: pointer;

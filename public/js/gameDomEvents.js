@@ -167,9 +167,9 @@ $(".changePoints").mousedown(function(e) {
 	app.game.focusedInput = this;
 	this.value = "";
 }).blur(function() {
-	var val = "-";
-	if ($(this).hasClass("plusPoints")) val = "+";
-	val += " Double click to inverse.";
+	var val = "SUBTRACT";
+	if ($(this).hasClass("plusPoints")) val = "ADD";
+	val = "[input] amount of life points to " + val + ".";
 	this.value = val;
 	app.game.focusedInput = false;
 }).dblclick(function() {
