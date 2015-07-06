@@ -621,6 +621,9 @@ table {
 	padding: 4px 0px 2px 0px;
 	margin-left: 5px;
 }
+.highlight {
+	background-color: #FFDDAA;
+}
 .users {
 	float: left;
 	width: 150px;

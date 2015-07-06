@@ -382,7 +382,7 @@ var ate = {
 		}
 	},
 	newPM: function(sender, receiver, msg) {
-		app.addNotification();
+		app.addNotification("PM");
 		if (this.userid === toId(sender)) {
 			var you = sender;
 			var person = receiver;
@@ -561,8 +561,16 @@ var ate = {
 
 			// **bold**
 			message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>');
-
-			return addTime + '<b><font color="' + hashColor(name.substr(1)) + '" class="username">' + escapeHTML(name) + ':</b></font> ' + message;
+			
+			var buff = addTime + '<b><font color="' + hashColor(name.substr(1)) + '" class="username">' + escapeHTML(name) + ':</b></font> ' + message;
+			
+			// highlight
+			if (toId(message).split(app.userid).length - 1 > 0) {
+				buff = "<div class=\"highlight\">" + buff + "</div>";
+				app.addNotification("Highlight");
+			}
+			
+			return buff;
 		};
 		Room.prototype.joinLeaveTemplate = function() {
 			var buff = $('<div><span class="jcont"><span class="jlog"></span> joined</span><span class="lcont"><span class="and"> AND </span><span class="llog"></span> left</span></div>');

@@ -581,6 +581,7 @@ Game.prototype.nextQueue = function() {
 	self.queue.splice(0, 1);
 	var event = currentQueue[0];
 	var data = currentQueue[1];
+	app.addNotification("Duel");
 	switch (event) {
 		default: alert("Oops!", "No case for event: '" + event + "'", "error");
 		break;
