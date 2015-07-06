@@ -63,6 +63,22 @@ it minifies the CSS and JavaScript files.
 You can also run `grunt test` to use linters to check if you made any errors
 in your code.
 
+## Setting up an Administrator account
+
+Once your server is up, you probably want to make yourself an Administrator (~) on it.
+
+### db.json
+
+To become an Administrator, create a file named `db.json` containing
+
+```js
+{
+  {"USER": 4}
+}
+```
+
+Replace `USER` with the username that you would like to become an Administrator.
+
 ## License
 
 [MIT](LICENSE)
