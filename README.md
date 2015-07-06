@@ -65,7 +65,7 @@ in your code.
 
 ## Setting up an Administrator account
 
-Once your server is up, you probably want to make yourself an Administrator (~) on it.
+Once your server is up, you probably want to make yourself an Administrator (-) on it.
 
 ### db.json
 
@@ -73,7 +73,9 @@ To become an Administrator, create a file named `db.json` containing
 
 ```js
 {
-  {"USER": 4}
+    "auths": {
+        "USER": 4
+    }
 }
 ```
 

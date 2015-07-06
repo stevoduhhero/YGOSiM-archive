@@ -1,54 +1,54 @@
 {
-  "name": "YGOSiM",
-  "version": "0.0.0",
-  "description": "Manual Yu-Gi-Oh! Simulator.",
-  "author": "StevoDuhHero",
-  "contributors": [
-    "Philip La <birkal@outlook.com>"
-  ],
-  "scripts": {
-    "test": "grunt test",
-    "start": "node lib/server.js"
-  },
-  "main": "lib/server.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/stevoduhhero/ygosim.git"
-  },
-  "bugs": {
-    "url": "https://github.com/stevoduhhero/ygosim/issues"
-  },
-  "keywords": [
-    "yugioh",
-    "Yu-Gi-Oh!",
-    "card",
-    "game",
-    "simulator",
-    "web",
-    "manual"
-  ],
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "chalk": "^1.0.0",
-    "compression": "^1.5.0",
-    "express": "^4.12.3",
-    "jsonwebtoken": "^5.0.2",
-    "lowdb": "^0.10.1",
-    "mongoose": "^4.0.6",
-    "morgan": "^1.6.0",
-    "socket.io": "^1.3.5"
-  },
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-cssmin": "^0.12.3",
-    "grunt-contrib-jshint": "^0.11.1",
-    "grunt-contrib-uglify": "^0.9.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "load-grunt-tasks": "^3.2.0"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": "0.12"
-  }
+    "name": "YGOSiM",
+    "version": "0.0.0",
+    "description": "Manual Yu-Gi-Oh! Simulator.",
+    "author": "StevoDuhHero",
+    "contributors": [
+        "Philip La <birkal@outlook.com>"
+    ],
+    "scripts": {
+        "test": "grunt test",
+        "start": "node lib/server.js"
+    },
+    "main": "lib/server.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/stevoduhhero/ygosim.git"
+    },
+    "bugs": {
+        "url": "https://github.com/stevoduhhero/ygosim/issues"
+    },
+    "keywords": [
+        "yugioh",
+        "Yu-Gi-Oh!",
+        "card",
+        "game",
+        "simulator",
+        "web",
+        "manual"
+    ],
+    "dependencies": {
+        "bcrypt-nodejs": "0.0.3",
+        "chalk": "^1.0.0",
+        "compression": "^1.5.0",
+        "express": "^4.12.3",
+        "jsonwebtoken": "^5.0.2",
+        "lowdb": "^0.10.1",
+        "mongoose": "^4.0.6",
+        "morgan": "^1.6.0",
+        "socket.io": "^1.3.5"
+    },
+    "devDependencies": {
+        "grunt": "^0.4.5",
+        "grunt-contrib-concat": "^0.5.1",
+        "grunt-contrib-cssmin": "^0.12.3",
+        "grunt-contrib-jshint": "^0.11.1",
+        "grunt-contrib-uglify": "^0.9.1",
+        "grunt-contrib-watch": "^0.6.1",
+        "load-grunt-tasks": "^3.2.0"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": "0.12"
+    }
 }
