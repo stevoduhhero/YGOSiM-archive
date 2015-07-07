@@ -3076,6 +3076,7 @@ var dbConversion = {
 		524290: "Field Spell Card",
 		1048580: "Counter Trap Card",
 		2097185: "Flip Effect Monster",
+		2101281: "Flip Effect Tuner Monster",
 		4194337: "Toon Monster",
 		8388609: "XYZ Monster",
 		8388641: "XYZ / Effect Monster",
@@ -3322,15 +3323,15 @@ function cardInfo(id) {
 		id: id,
 		name: ray[0],
 		description: ray[1],
-		ot: conversion.ot[ray[2]],
+		ot: conversion.ot[ray[2]] || (ray[2] + ""),
 		alias: ray[3],
-		archetype: conversion.archetypes[ray[4]],
-		kind: conversion.kinds[ray[5]],
+		archetype: conversion.archetypes[ray[4]] || (ray[4] + ""),
+		kind: conversion.kinds[ray[5]] || (ray[5] + ""),
 		atk: ray[6],
 		def: ray[7],
 		level: ray[8],
-		race: conversion.races[ray[9]],
-		attribute: conversion.attributes[ray[10]],
+		race: conversion.races[ray[9]] || (ray[9] + ""),
+		attribute: conversion.attributes[ray[10]] || (ray[10] + ""),
 		//category: ray[11], //from what i've read all it is is something to make searching for cards easier :s
 	};
 	return dbConvertCache[id];
