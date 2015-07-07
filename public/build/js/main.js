@@ -1133,6 +1133,7 @@ var ate = {
 $(function() {
 	ate.init();
 });
+window.focused = true;
 ate.resize();
 
 function Socket() {
