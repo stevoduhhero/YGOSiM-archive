@@ -266,6 +266,7 @@ $("#ladder").click(function() {
 		"#youhand"
 	];
 	$("body").on("mousedown touchstart", draggables.join(','), function(touch) {
+		var e = touch;
 		if (touch.originalEvent.touches) touch = touch.originalEvent.touches[0];
 		if ($(this).parent().hasClass("o")) app.game.contextHover($(this).parent());
 		var drag = {};
@@ -284,12 +285,14 @@ $("#ladder").click(function() {
 		$(drag.source).hide();
 		if ($(drag.source).parent().hasClass("cardList")) $(".viewList").hide(); //hide the cardList viewer as well so we can actually see where we're dragging
 		app.dragging = drag;
-		touch.preventDefault();
+		e.preventDefault();
 		return false;
 	});
 	$(document).on("mousemove touchmove", function(touch) {
+		var e = touch;
 		if (touch.originalEvent.touches) touch = touch.originalEvent.touches[0];
 		if (!app.dragging) return;
+		e.preventDefault();
 		//unset drop target
 		delete app.dragging.target;
 		$(".dropTarget").removeClass("dropTarget");

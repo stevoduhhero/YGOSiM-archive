@@ -240,6 +240,7 @@ Game.prototype.parseResetData = function(data) {
 };
 Game.prototype.updateGame = function(reset) {
 	//turn all the $().remove, $().empty into update()'s so that we also maintain the current game state
+	$(".deckContainer, .sidingContainer, #doneSiding").remove();
 	$(".viewList").remove();
 	$(".status").empty();
 	if (!reset) $(".gameLogs").empty();
@@ -542,8 +543,8 @@ Game.prototype.startSiding = function() {
 		}
 		app.game.send('doneSiding', {newDeck: deck});
 		$("#youstatus").html("Ready!");
-		$(".deckContainer").remove();
 		$(this).remove();
+		$(".deckContainer, .sidingContainer, #doneSiding").remove();
 	});
 };
 Game.prototype.addLog = function(msg) {
@@ -581,6 +582,7 @@ Game.prototype.nextQueue = function() {
 	self.queue.splice(0, 1);
 	var event = currentQueue[0];
 	var data = currentQueue[1];
+	app.addNotification("Duel");
 	switch (event) {
 		default: alert("Oops!", "No case for event: '" + event + "'", "error");
 		break;

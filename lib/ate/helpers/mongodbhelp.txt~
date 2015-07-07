@@ -1,5 +1,3 @@
-OMFG GO TO THE BIN DIRECTORY AND DO THIS
-	./mongod --fork --logpath /home/stevoduhhero/mongodb.log --dbpath data/ate
 ALSO MAKE SURE THE mongodb.log file has good permissions
 
 i had to do this:
@@ -11,12 +9,13 @@ i had to do this:
 	- start the mongodb server by doing "mongod --dbpath ate" ... replace "ate" with the database name you want
 
 
-
 linux start with:
-sudo service mongod start
+./mongod --fork --logpath /home/stevoduhhero/mongodb.log --dbpath data/ate
+nohup node server.js </dev/null/ &>/dev/null &
 
 windows start width:
 click mongo.bat
 
 drop schema
 >> models.LadderModel.db.collections.laddermodels.drop()
+

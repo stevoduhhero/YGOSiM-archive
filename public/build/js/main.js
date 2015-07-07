@@ -253,6 +253,7 @@ var ate = {
 					for (var i in data) {
 						var chall = data[i].split(',');
 						app.addChallenge(chall[0], chall[1], chall[2]);
+						app.addNotification("Challenge");
 					}
 				},
 				"reject": function(data) {
@@ -486,7 +487,7 @@ var ate = {
 		}
 	},
 	newPM: function(sender, receiver, msg) {
-		app.addNotification();
+		app.addNotification("PM");
 		if (this.userid === toId(sender)) {
 			var you = sender;
 			var person = receiver;
@@ -665,8 +666,16 @@ var ate = {
 
 			// **bold**
 			message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>');
-
-			return addTime + '<b><font color="' + hashColor(name.substr(1)) + '" class="username">' + escapeHTML(name) + ':</b></font> ' + message;
+			
+			var buff = addTime + '<b><font color="' + hashColor(name.substr(1)) + '" class="username">' + escapeHTML(name) + ':</b></font> ' + message;
+			
+			// highlight
+			if (toId(message).split(app.userid).length - 1 > 0) {
+				buff = "<div class=\"highlight\">" + buff + "</div>";
+				app.addNotification("Highlight");
+			}
+			
+			return buff;
 		};
 		Room.prototype.joinLeaveTemplate = function() {
 			var buff = $('<div><span class="jcont"><span class="jlog"></span> joined</span><span class="lcont"><span class="and"> AND </span><span class="llog"></span> left</span></div>');
@@ -1125,6 +1134,7 @@ var ate = {
 $(function() {
 	ate.init();
 });
+window.focused = true;
 ate.resize();
 
 function Socket() {
@@ -1524,6 +1534,7 @@ $("#ladder").click(function() {
 		"#youhand"
 	];
 	$("body").on("mousedown touchstart", draggables.join(','), function(touch) {
+		var e = touch;
 		if (touch.originalEvent.touches) touch = touch.originalEvent.touches[0];
 		if ($(this).parent().hasClass("o")) app.game.contextHover($(this).parent());
 		var drag = {};
@@ -1542,12 +1553,14 @@ $("#ladder").click(function() {
 		$(drag.source).hide();
 		if ($(drag.source).parent().hasClass("cardList")) $(".viewList").hide(); //hide the cardList viewer as well so we can actually see where we're dragging
 		app.dragging = drag;
-		touch.preventDefault();
+		e.preventDefault();
 		return false;
 	});
 	$(document).on("mousemove touchmove", function(touch) {
+		var e = touch;
 		if (touch.originalEvent.touches) touch = touch.originalEvent.touches[0];
 		if (!app.dragging) return;
+		e.preventDefault();
 		//unset drop target
 		delete app.dragging.target;
 		$(".dropTarget").removeClass("dropTarget");
@@ -1976,6 +1989,7 @@ Game.prototype.parseResetData = function(data) {
 };
 Game.prototype.updateGame = function(reset) {
 	//turn all the $().remove, $().empty into update()'s so that we also maintain the current game state
+	$(".deckContainer, .sidingContainer, #doneSiding").remove();
 	$(".viewList").remove();
 	$(".status").empty();
 	if (!reset) $(".gameLogs").empty();
@@ -2278,8 +2292,8 @@ Game.prototype.startSiding = function() {
 		}
 		app.game.send('doneSiding', {newDeck: deck});
 		$("#youstatus").html("Ready!");
-		$(".deckContainer").remove();
 		$(this).remove();
+		$(".deckContainer, .sidingContainer, #doneSiding").remove();
 	});
 };
 Game.prototype.addLog = function(msg) {
@@ -2317,6 +2331,7 @@ Game.prototype.nextQueue = function() {
 	self.queue.splice(0, 1);
 	var event = currentQueue[0];
 	var data = currentQueue[1];
+	app.addNotification("Duel");
 	switch (event) {
 		default: alert("Oops!", "No case for event: '" + event + "'", "error");
 		break;
@@ -3061,6 +3076,7 @@ var dbConversion = {
 		524290: "Field Spell Card",
 		1048580: "Counter Trap Card",
 		2097185: "Flip Effect Monster",
+		2101281: "Flip Effect Tuner Monster",
 		4194337: "Toon Monster",
 		8388609: "XYZ Monster",
 		8388641: "XYZ / Effect Monster",
@@ -3307,15 +3323,15 @@ function cardInfo(id) {
 		id: id,
 		name: ray[0],
 		description: ray[1],
-		ot: conversion.ot[ray[2]],
+		ot: conversion.ot[ray[2]] || (ray[2] + ""),
 		alias: ray[3],
-		archetype: conversion.archetypes[ray[4]],
-		kind: conversion.kinds[ray[5]],
+		archetype: conversion.archetypes[ray[4]] || (ray[4] + ""),
+		kind: conversion.kinds[ray[5]] || (ray[5] + ""),
 		atk: ray[6],
 		def: ray[7],
 		level: ray[8],
-		race: conversion.races[ray[9]],
-		attribute: conversion.attributes[ray[10]],
+		race: conversion.races[ray[9]] || (ray[9] + ""),
+		attribute: conversion.attributes[ray[10]] || (ray[10] + ""),
 		//category: ray[11], //from what i've read all it is is something to make searching for cards easier :s
 	};
 	return dbConvertCache[id];
