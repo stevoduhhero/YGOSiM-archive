@@ -11,7 +11,7 @@ i had to do this:
 
 linux start with:
 ./mongod --fork --logpath /home/stevoduhhero/mongodb.log --dbpath data/ate
-nohup node server.js </dev/null/ &>/dev/null &
+nohup node server.js </dev/null &>/dev/null &
 
 windows start width:
 click mongo.bat
