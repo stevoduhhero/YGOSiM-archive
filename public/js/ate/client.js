@@ -149,6 +149,7 @@ var ate = {
 					for (var i in data) {
 						var chall = data[i].split(',');
 						app.addChallenge(chall[0], chall[1], chall[2]);
+						app.addNotification("Challenge");
 					}
 				},
 				"reject": function(data) {
