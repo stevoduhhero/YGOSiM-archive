@@ -146,6 +146,7 @@ Game.prototype.resize = function() {
 	if (gameChatHeight < minGameChatHeight) gameChatHeight = minGameChatHeight;
 	$(".gameLogs").height(gameChatHeight - 34 - 10);
 	$(".gameChat").height(gameChatHeight);
+	$(".phase").css("line-height", $(".phase").height() + "px");
 };
 Game.prototype.parseStartData = function(data, reset) {
 	var you = data[1];

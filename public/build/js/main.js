@@ -896,7 +896,7 @@ var ate = {
 		var start = '';
 		var end = '';
 		if (opaqueness !== false) {
-			start = '<div id="p' + id + '" class="opaqueness">';
+			start = '<div id="p' + id + '" class="opaqueness" style="z-index: 99999;">';
 			end = '</div>';
 		}
 		buff += '<div class="popup"><div class="form"><input type="hidden" name="formType" value="' + type + '" />';
@@ -1270,7 +1270,7 @@ $("#findDuel").click(function() {
 	if (this.innerHTML === "Find Duel") {
 		var insides = "",
 			id = new Date() / 1;
-		insides += '<div id="daddy' + id + '" onclick="$(\'#baby' + id + '\').remove();$(this).remove();" style="width: 100%;height: 100%;background: rgba(255, 255, 255, 0.25);cursor: pointer;position: absolute;top: 0;left:0 ;"></div>';
+		insides += '<div id="daddy' + id + '" onclick="$(\'#baby' + id + '\').remove();$(this).remove();" style="z-index: 99999;width: 100%;height: 100%;background: rgba(255, 255, 255, 0.25);cursor: pointer;position: absolute;top: 0;left:0 ;"></div>';
 		insides += '<div id="baby' + id + '" class="search">';
 		insides += '<div><label>Deck:</label>';
 		insides += '<select id="selectDeck' + id + '">';
@@ -1895,6 +1895,7 @@ Game.prototype.resize = function() {
 	if (gameChatHeight < minGameChatHeight) gameChatHeight = minGameChatHeight;
 	$(".gameLogs").height(gameChatHeight - 34 - 10);
 	$(".gameChat").height(gameChatHeight);
+	$(".phase").css("line-height", $(".phase").height() + "px");
 };
 Game.prototype.parseStartData = function(data, reset) {
 	var you = data[1];
