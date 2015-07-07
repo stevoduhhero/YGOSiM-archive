@@ -240,7 +240,7 @@ Game.prototype.parseResetData = function(data) {
 };
 Game.prototype.updateGame = function(reset) {
 	//turn all the $().remove, $().empty into update()'s so that we also maintain the current game state
-	$(".sidingContainer").remove();
+	$(".deckContainer, .sidingContainer, #doneSiding").remove();
 	$(".viewList").remove();
 	$(".status").empty();
 	if (!reset) $(".gameLogs").empty();
@@ -543,9 +543,8 @@ Game.prototype.startSiding = function() {
 		}
 		app.game.send('doneSiding', {newDeck: deck});
 		$("#youstatus").html("Ready!");
-		$(".deckContainer").remove();
 		$(this).remove();
-		$(".sidingContainer").remove();
+		$(".deckContainer, .sidingContainer, #doneSiding").remove();
 	});
 };
 Game.prototype.addLog = function(msg) {
