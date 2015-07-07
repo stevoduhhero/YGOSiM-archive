@@ -2,7 +2,7 @@ $("#findDuel").click(function() {
 	if (this.innerHTML === "Find Duel") {
 		var insides = "",
 			id = new Date() / 1;
-		insides += '<div id="daddy' + id + '" onclick="$(\'#baby' + id + '\').remove();$(this).remove();" style="width: 100%;height: 100%;background: rgba(255, 255, 255, 0.25);cursor: pointer;position: absolute;top: 0;left:0 ;"></div>';
+		insides += '<div id="daddy' + id + '" onclick="$(\'#baby' + id + '\').remove();$(this).remove();" style="z-index: 99999;width: 100%;height: 100%;background: rgba(255, 255, 255, 0.25);cursor: pointer;position: absolute;top: 0;left:0 ;"></div>';
 		insides += '<div id="baby' + id + '" class="search">';
 		insides += '<div><label>Deck:</label>';
 		insides += '<select id="selectDeck' + id + '">';

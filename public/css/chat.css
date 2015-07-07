@@ -341,7 +341,7 @@ table {
 	color: black;
 	border: 1px solid #999999;
 	padding: 2px 10px;
-	z-index: 10000;
+	z-index: 99999;
 }
 .opaqueness .popup {
 	position: static;
@@ -409,6 +409,7 @@ table {
 	background: rgb(101, 101, 101);
 	text-align: center;
 	color: white;
+	z-index: 99999;
 }
 .search select {
 	color: black;

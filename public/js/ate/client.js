@@ -792,7 +792,7 @@ var ate = {
 		var start = '';
 		var end = '';
 		if (opaqueness !== false) {
-			start = '<div id="p' + id + '" class="opaqueness">';
+			start = '<div id="p' + id + '" class="opaqueness" style="z-index: 99999;">';
 			end = '</div>';
 		}
 		buff += '<div class="popup"><div class="form"><input type="hidden" name="formType" value="' + type + '" />';
