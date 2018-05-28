@@ -30,7 +30,6 @@
     "dependencies": {
         "bcrypt-nodejs": "0.0.3",
         "chalk": "^1.0.0",
-<<<<<<< HEAD
         "compression": "^1.7.2",
         "express": "^4.16.3",
         "g": "^2.0.1",
@@ -40,31 +39,15 @@
         "mongoose": "^4.13.14",
         "morgan": "^1.9.0",
         "socket.io": "^1.7.4"
-=======
-        "compression": "^1.5.0",
-        "express": "^4.12.3",
-        "jsonwebtoken": "^5.0.2",
-        "lowdb": "^0.10.1",
-        "mongoose": "^4.0.6",
-        "morgan": "^1.6.0",
-        "socket.io": "^1.3.5"
->>>>>>> 30f3aef14c50989fa4adbfef9706ba8e013e6b08
     },
     "devDependencies": {
         "grunt": "^0.4.5",
         "grunt-contrib-concat": "^0.5.1",
         "grunt-contrib-cssmin": "^0.12.3",
-<<<<<<< HEAD
         "grunt-contrib-jshint": "^0.11.3",
         "grunt-contrib-uglify": "^0.9.2",
         "grunt-contrib-watch": "^0.6.1",
         "load-grunt-tasks": "^3.5.2"
-=======
-        "grunt-contrib-jshint": "^0.11.1",
-        "grunt-contrib-uglify": "^0.9.1",
-        "grunt-contrib-watch": "^0.6.1",
-        "load-grunt-tasks": "^3.2.0"
->>>>>>> 30f3aef14c50989fa4adbfef9706ba8e013e6b08
     },
     "license": "MIT",
     "engines": {
