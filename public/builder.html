@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -895,3 +896,901 @@ dingersLoop();
 <div class="exitDB" onclick="window.top.$('#builder').hide();">x</div>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body, html {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	cursor: default;
+	overflow: hidden;
+}
+.unselectable, body {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+.selectable {
+   -moz-user-select: -moz-all;
+   -khtml-user-select: all;
+   -webkit-user-select: all;
+   -ms-user-select: all;
+   user-select: all;
+}
+#dbContainer {
+	position: relative
+	width: 100%;
+	height: 100%;
+}
+.pano {
+	position: relative;
+	float: left;
+	height: 99%;
+	background: rgba(17, 17, 17, 0.46);
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0em 0em 0.1em #b6b6b6;
+	margin: 0.25%;
+	margin-left: 0.66666%;
+	margin-right: 0;
+	margin-bottom: 0;
+}
+#infoPanel {
+	width: 25%;
+	text-align: left;
+}
+.buttonLine button, .buttonLine select {
+	height: 5%;
+	min-height: 30px;
+	padding: 0;
+	margin: 2%;
+	border: none;
+	float: left;
+	font-size: 18px;
+	width: 21%;
+}
+#deckPanel {
+	width: 53%;
+}
+#searchPanel {
+	width: 19%;
+	text-align: left;
+}
+.searchInput {
+	width: 98%;
+	height: 6%;
+	padding: 1%;
+	margin: 0;
+	border: none;
+	outline: none;
+	background: white;
+	border-radius: 10px 10px 0px 0px;
+	font-size: 20px;
+}
+#results {
+	width: 100%;
+	height: 92%;
+	overflow: hidden;
+}
+#results span {
+	cursor: pointer;
+	font-weight: bold;
+	padding: 5px;
+	font-size: 40px;
+	text-shadow: 1px 1px 1px rgb(237, 255, 0);
+	color: transparent;
+}
+#results span:hover {
+	text-shadow: 1px 1px 0px rgb(237, 255, 0);
+}
+#results div {
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+}
+#results img {
+	width: 21%;
+	margin: 2%;
+	margin-top: 0;
+	margin-bottom: 0;
+	cursor: pointer;
+}
+#cardInfo {
+	width: 96%;
+	height: 73%;
+	margin: 2%;
+	margin-bottom: 0;
+}
+#cardInfo img {
+	max-width: 100%;
+}
+#leftPanelCardInfo {
+	width: 98%;
+	height: 30%;
+	background: rgba(255, 255, 255, 0.8);
+	opacity: 0.9;
+	outline: 1px solid #4A4A4A;
+	padding: 1%;
+	margin-top: 1%;
+	font-size: 16px;
+	overflow-y: auto;
+}
+#leftPanelCardInfo button {
+	background: rgb(26, 26, 166);
+	color: white;
+}
+#leftPanelCardInfo center {
+	font-weight: bold;
+}
+#maindeck, #sidedeck, #extradeck {
+	width: 94%;
+	margin: 3%;
+	position: relative;
+	background: rgba(17, 17, 17, 0.46);
+}
+#maindeck img, #sidedeck img, #extradeck img {
+	text-align: center;
+	height: 100%;
+	max-width: 100%;
+	cursor: pointer;
+}
+#maindeck .dbimg {
+	width: 10%;
+	height: 16%;
+	float: left;
+	margin-bottom: 0.5%;
+}
+#extradeck .dbimg, #sidedeck .dbimg {
+	width: 6.666%;
+	height: 100%;
+	float: left;
+	margin-bottom: 0.5%;
+}
+#maindeck {
+	height: 71%;
+}
+#sidedeck {
+	height: 8.5%;
+}
+#extradeck {
+	height: 8.5%;
+}
+.decktitle {
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	font-size: 20px;
+	color: white;
+	text-shadow: 0.05em 0.05em 0.05em black;
+	font-weight: bold;
+	border-bottom: 1px dashed rgb(86, 86, 68);
+}
+.exitDB {
+	font-weight: bold;
+	color: white;
+	background: red;
+	font-size: 25px;
+	width: 25px;
+	height: 25px;
+	line-height: 20px;
+	position: absolute;
+	top: 0;
+	left: 0.5%;
+	text-align: center;
+	border-radius: 10px;
+	cursor: pointer;
+	text-shadow: 0.05em 0.05em black;
+}
+.exitDB:hover {
+	color: white;
+	background: rgb(188, 0, 0);
+}
+.exportable {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	width: 300px;
+	height: 200px;
+	margin-left: -100px;
+	margin-top: -100px;
+}
+.rel {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.exportable textarea {
+	width: 100%;
+	height: 100%;
+	margin: -5px;
+	padding: 5px;
+}
+.exportableClose {
+	position: absolute;
+	right: -23px;
+	top: -16px;
+	background: red;
+	color: white;
+	font-size: 24px;
+	border-radius: 10px;
+	border: 1px solid black;
+	padding: 5px;
+	padding-left: 6px;
+	height: 12px;
+	width: 12px;
+	cursor: pointer;
+	line-height: 6px;
+}
+</style>
+<script>var exports = new Object();</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(function() {
+	function doneLoading() {
+		app.db = exports.dbConvert;
+		$("#search").keyup(function(e) {
+			var val = this.value;
+			if (typeof typinTimeout != "undefined") clearTimeout(typinTimeout);
+			typinTimeout = setTimeout(function() {
+				app.search(val);
+			}, 333);
+		});
+		$("body").mouseover(function() {
+			var decks = window.top.app.decks;
+			for (var i in decks) if (!app.decks[i]) app.decks[i] = {name: decks[i]};
+			app.updateDecks();
+			if (app.deck != -1) {
+				//we have a deck loaded already
+				$("#decks").val(app.deck);
+			} else {
+				//load the first deck
+				var load = 0;
+				if (app.decks.length == 0) load = -1; //we have no first deck to load
+				app.loadDeck(load);
+			}
+		});
+		cardInfo(40640057);
+		app.search("");
+	}
+	if (window.top.location.pathname.split('build').length - 1 > 0) {
+		//we're viewing deck builder on builder.html
+		function getScript(url, callback, cache) {
+			//we're just using a different build bcos we want to make sure the DB files are cached
+			if (cache) var cache = true; else cache = false;
+			$.ajax({
+				type: "GET",
+				url: url,
+				success: callback,
+				dataType: "script",
+				cache: cache
+			});
+		};
+		var done = 0;
+		getScript("./js/data/dbConversion.js", function(data, textStatus, jqxhr) {
+			done++;
+			if (done == 2) doneLoading();
+		}, true);
+		getScript("./js/data/db.js", function(data, textStatus, jqxhr) {
+			done++;
+			if (done == 2) doneLoading();
+		}, true);
+	} else {
+		app.iframe = true;
+		//we're viewing deck builder on iframe on ygosim
+		exports.db = window.top.db;
+		//exports.dbConversion = window.top.exports.dbConversion;
+		exports.dbConvert = window.top.cardInfo;
+		doneLoading();
+	}
+})
+var app = {
+	resources: "http://ygosim.com/img/cards",
+	//make sure dbFunctionCache and db app are the same as on app.js 
+	dbFunctionCache: new Object(),
+	dingers: new Object(), //decks we're waiting to load
+	search: function(search) {
+		var results = new Array(),
+			search = search.toLowerCase(),
+			insides = '',
+			counter = 0,
+			max = app.resultsPerPage;
+		$("#results").empty();
+		for (var card in exports.db) {
+			var info = app.db(card);
+			if (info.name.toLowerCase().split(search).length - 1 > 0) {
+				results.push(info);
+				if (counter != max) {
+					$("#results").append(app.formatResult(info));
+					counter++;
+				}
+			}
+		}
+		var pages = Math.ceil(results.length / max) - 1;
+		this.results = results;
+		this.page = 0;
+		this.pages = pages;
+		insides = '<div style="text-align: center;"><span onclick="app.minusPage();">&#8678;</span>1 / ' + (pages + 1) + '<span onclick="app.plusPage();">&#8680;</span></div>';
+		$("#results").prepend(insides);
+	},
+	decks: new Array(),
+	deck: -1,
+	addCard: function(card, side, deckChanged) {
+		var deck = this.decks[this.deck],
+			info = app.db(card),
+			todeck = "main",
+			type = "monster";
+		if (!deck) deck = this.newDeck();
+		if (info.kind.split('Trap').length - 1 > 0 ) type = "trap";
+		if (info.kind.split('Spell').length - 1 > 0) type = "spell";
+		
+		if (info.kind.split('Synchro').length - 1 > 0) todeck = "extra";
+		if (info.kind.split('XYZ').length - 1 > 0) todeck = "extra";
+		if (info.kind.split('Fusion').length - 1 > 0) todeck = "extra";
+		if (side) todeck = "side";
+		if (!deck[todeck][card]) deck[todeck][card] = 0;
+		if (deckChanged) {
+			var copies = 0;
+			if (deck.main[card]) copies += deck.main[card];
+			if (deck.extra[card]) copies += deck.extra[card];
+			if (deck.side[card]) copies += deck.side[card];
+			if (copies == 3) return;
+			if (((todeck == "side" || todeck == "extra") && deck.count[todeck] == 15) || (todeck == "main" && deck.count.main.monster + deck.count.main.spell + deck.count.main.trap == 60)) return;
+			//eventually check for banlist limits here
+			//also, maybe we shouldn't restrict cards on here
+			//just put the amount it's limited to somewhere on the card
+			//and on the server side don't let them play if they built a deck against rules
+			//this way traditional tier works too without additional progrmaming
+		}
+		deck[todeck][card]++;
+		var div = $('<div id="c' + card + '" class="dbimg"></div>'),
+			img = cardimg(card, true);
+		img.onclick = function() {app.removeCard(card, todeck, type, this);};
+		div.append(img);
+		if (deck[todeck][card] == 1) {
+			if (todeck == "main") {
+				var key;
+				if (type == "monster") key = deck.count.main.monster;
+				if (type == "spell") key = deck.count.main.monster + deck.count.main.spell;
+				if (type == "trap") key = deck.count.main.monster + deck.count.main.spell + deck.count.main.trap;
+				key--;
+				var cardBefore = $($("#maindeck .dbimg")[key]);
+				if (cardBefore.length > 0) {
+					//if there is a cardbefore
+					cardBefore.after(div);
+				} else {
+					//if no card before
+					if (key == -1) div.prependTo("#maindeck"); else {
+						div.appendTo("#maindeck");
+					}
+				}
+			} else div.appendTo("#" + todeck + "deck");
+		} else $("#" + todeck + "deck").find('#c' + card).after(div);
+		if (todeck == "main") {
+			deck.count[todeck][type]++;
+		} else deck.count[todeck]++;
+		
+		if (deckChanged) deck.unsaved = true;
+		this.updateCounts();
+	},
+	removeCard: function(card, todeck, type, el) {
+		var deck = this.decks[this.deck];
+		$(el).parent().remove();
+		deck[todeck][card]--;
+		if (deck[todeck][card] == 0) delete deck[todeck][card];
+		if (todeck == "main") deck.count[todeck][type]--; else deck.count[todeck]--;
+		deck.unsaved = true;
+		
+		this.updateCounts();
+	},
+	updateCounts: function() {
+		var deck = this.decks[this.deck];
+		$("#maindeck .decktitle").html("Main Deck: " + (deck.count.main.monster + deck.count.main.spell + deck.count.main.trap));
+		$("#extradeck .decktitle").html("Extra Deck: " + deck.count.extra);
+		$("#sidedeck .decktitle").html("Side Deck: " + deck.count.side);
+	},
+	formatResult: function(info) {
+		var img = cardimg(info.id);
+		img.onclick = function() {
+			var card = this.src.split('.jpg')[0].split('cards/')[1].replace("thumbnail/", "");
+			app.addCard(info.id, false, true);
+		};
+		return img;
+	},
+	resultsPerPage: 20,
+	page: 0,
+	pages: 0,
+	results: undefined,
+	newPage: function() {
+		$("#results").empty();
+		for (var i = this.page * this.resultsPerPage; i < (this.page + 1) * this.resultsPerPage; i++) {
+			var res = this.results[i];
+			if (!res) break;
+			$("#results").append(app.formatResult(res));
+		}
+		var insides = '<div style="text-align: center;"><span onclick="app.minusPage();">&#8678;</span>' + (this.page + 1) + ' / ' + (this.pages + 1) + '<span onclick="app.plusPage();">&#8680;</span></div>';
+		$("#results").prepend(insides);
+	},
+	minusPage: function() {
+		if (this.page == 0) return;
+		this.page--;
+		this.newPage();
+	},
+	plusPage: function() {
+		if (this.page == this.pages) return;
+		this.page++;
+		this.newPage();
+	},
+	loadDeck: function(id, newdeck, update) {
+		id = Math.floor(id);
+		if (id == -1) return;
+		if (this.decks[this.deck] && this.decks[this.deck].unsaved && !newdeck) {
+			if (!confirm("UNSAVED CHANGES:\n\nLose changes made to deck: '" + this.decks[this.deck].name + "'???")) {
+				//return to the old loaded deck
+				return this.updateDecks();
+			} else {
+				if (this.decks[this.deck].name === "UNTITLED") this.decks.splice(this.deck, 1);
+			}
+		}
+		app.deck = id;
+		function load() {
+			//turn the object app.decks[app.deck] into the images on the main/side/extra, you know... load the images
+			app.clearDeckDOM();
+			if (newdeck && !update) return app.updateCounts();
+			var deck = app.decks[app.deck];
+			deck = JSON.parse(JSON.stringify(deck));
+			app.decks[app.deck] = {
+				name: deck.name,
+				main: new Object(),
+				side: new Object(),
+				extra: new Object(),
+				count: {
+					main: {
+						monster: 0,
+						spell: 0,
+						trap: 0
+					},
+					extra: 0,
+					side: 0
+				},
+				unsaved: false
+			};
+			var decks = ["main", "side", "extra"];
+			for (var i in decks) {
+				var type = decks[i];
+				for (var card in deck[type]) for (var x = 0; x < deck[type][card]; x++) {
+					var sideDeck = ((type == "side") ? true : false);
+					app.addCard(card, sideDeck, update);
+				}
+			}
+			app.updateCounts();
+		}
+		if (update) {
+			load();
+		} else if (!app.iframe || newdeck) {
+			load();
+		} else {
+			var deckString = window.top.app.deck[id];
+			if (!deckString) {
+				//request the deckString from the server and import it then reload the deck
+				window.top.app.socket.emit('open deck', {
+					name: app.decks[id].name,
+					id: id
+				});
+				app.dingers[id] = true;
+			} else {
+				//use import function to add this deck here
+				function importDeck(deckString, name) {
+					//turn the deckString into an object
+					var returny = app.importDeck(deckString);
+					returny.name = ((name) ? name : "UNTITLED");
+					returny.unsaved = false;
+					returny.count = {
+						main: {
+							monster: 0,
+							spell: 0,
+							trap: 0
+						},
+						extra: 0,
+						side: 0
+					};
+					return returny;
+				}
+				app.decks[id] = importDeck(deckString, app.decks[id].name);
+				load();
+			}
+		}
+	},
+	updateDecks: function() {
+		var insides = '';
+		for (var i in app.decks) insides += '<option value="' + i + '">' + app.decks[i].name + '</option>';
+		$("#decks").html(insides);
+	},
+	newDeck: function(name, deck) {
+		if (this.decks.length && this.decks[this.deck].name === "UNTITLED") this.decks.splice(this.deck, 1);
+		this.deck = this.decks.length;
+		this.decks.push({
+			name: ((name) ? name : "UNTITLED"),
+			main: new Object(),
+			side: new Object(),
+			extra: new Object(),
+			count: {
+				main: {
+					monster: 0,
+					spell: 0,
+					trap: 0
+				},
+				extra: 0,
+				side: 0
+			},
+			unsaved: true,
+		});
+		if (deck) {
+			var fromServer;
+			if (typeof deck === "string") {
+				fromServer = true;
+				deck = this.importDeck(deck);
+			}
+			var d = this.decks[this.deck];
+			d.main = deck.main;
+			d.side = deck.side;
+			d.extra = deck.extra;
+			if (fromServer) d.unsaved = false;
+		}
+		var update = !fromServer;
+		this.loadDeck(this.deck, "newdeck", update);
+		this.updateDecks();
+		
+		return this.decks[this.deck];
+	},
+	importDeckView: function() {
+		var CardDatabase = exports.db;
+		function contains(str, text) {
+			//Checks if a string contains a text
+			return str.indexOf(text) >= 0;
+		}
+		/**
+		 * Import a deck from user-imported text to an object of card ids.
+		 *
+		 * @param {String} text
+		 * @returns {Object} Deck
+		 */
+		function importDeck(text) {
+			var lines = text.split('\n');
+			var deck = {main: {}, side: {}, extra: {}};
+			var cards = [];
+			var cardNames = [];
+
+			// deck in which the cards will be put in
+			var deckContext = 'main';
+			var border = "---------";
+			lines.forEach(function(line) {
+				if (!line || line === border) return;
+				line = line.toLowerCase().trim();
+
+				if (contains(line, 'main deck')) return;
+				if (contains(line, 'extra deck')) {
+					deckContext = 'extra';
+					return;
+				}
+				if (contains(line, 'side deck')) {
+					deckContext = 'side';
+					return;
+				}
+
+				var numCard = Number(line.charAt(0));
+				var cardName = line.slice(3);
+
+				cards.push({amount: numCard, context: deckContext});
+				cardNames.push(cardName);
+			});
+
+			// Search for the card id in the database
+			// noprotect
+			var indexesUsed = {};
+			for (var id in CardDatabase) {
+				var name = CardDatabase[id][0].toLowerCase();
+				var index = cardNames.indexOf(name);
+				if (index >= 0) {
+					if (indexesUsed[index]) continue; //there are multiple entries for a card in the database
+					var card = cards[index];
+					deck[card.context][id] = card.amount;
+					indexesUsed[index] = true;
+				}
+			}
+
+			return deck;
+		}
+		var txt = prompt('Paste your exported deck here to import it.');
+		if (!txt) return;
+		var deck = importDeck(txt);
+		this.newDeck(undefined, deck);
+	},
+	exportDeckView: function() {
+		var CardDatabase = exports.db;
+		/**
+		 * Export a deck.
+		 *
+		 * @param {Object} deck
+		 * @returns {String}
+		 */
+		function exportDeck(deck) {
+			var cards = [];
+			var ids = [];
+			for (var id in deck.main) {
+				cards.push({id: id, amount: deck.main[id], context: 'main'});
+				ids.push(id);
+			}
+			for (var id in deck.side) {
+				cards.push({id: id, amount: deck.side[id], context: 'side'});
+				ids.push(id);
+			}
+			for (var id in deck.extra) {
+				cards.push({id: id, amount: deck.extra[id], context: 'extra'});
+				ids.push(id);
+			}
+			
+			var border = '\n---------\n';
+			var display = {
+				main: 'Main Deck' + border,
+				extra: 'Extra Deck' + border,
+				side: 'Side Deck' + border
+			};
+			var current = 'main';
+			for (var id in CardDatabase) {
+				var index = ids.indexOf(id);
+				if (index >= 0) {
+					var card = cards[index];
+					if (current !== card.context) {
+						 current = card.context;
+					}
+					display[current] += card.amount + 'x ' + CardDatabase[id][0] + '\n';
+				}
+			}
+
+			var text = display.main + '\n' + display.extra + '\n' + display.side;
+
+			return text;
+		}
+		var txt = exportDeck(this.decks[this.deck]);
+		$('.exportable').remove();
+		$('body').append('<div class="exportable"><div class="rel"><span onclick="$(\'.exportable\').remove();" class="exportableClose">x</span><textarea onclick="this.select();">' + txt + '</textarea></div></div>');
+	},
+	exportDeck: function(id) {
+		var deck = this.decks[((id) ? id : this.deck)],
+			decks = ["main", "extra", "side"],
+			deckString = "";
+		for (var deckTypeKey in decks) {
+			var deckType = decks[deckTypeKey],
+				deckTypeCount = 0;
+			for (var card in deck[deckType]) {
+				var count = deck[deckType][card],
+					pluses = "";
+				for (var i = 0; i < count - 1; i++) pluses += "+";
+				deckString += card + pluses + "|";
+				deckTypeCount++;
+			}
+			if (deckTypeCount != 0) deckString = deckString.slice(0, -1);
+			deckString += "@";
+		}
+		deckString = deckString.slice(0, -1);
+		console.log(deckString);
+		return deckString;
+	},
+	importDeck: function(deckString) {
+		/*
+			okay so it's like this
+			0 "+" = 1 copy
+			1 "+" = 2 copies
+			2 "+" = 3 copies
+
+			"|" separates the cards
+			for example maindeck: +card0|card1|++card2|card3@
+								 ^ this would be 2 copies of card0, 1 copy of card1, 3 of card2, 1 of card3, then the main deck is closed by @ (7cards)
+		*/
+		var decks = deckString.split('@');
+		var deck = {
+			main: new Object(),
+			extra: new Object(),
+			side: new Object()
+		};
+		var deckKeys = ["main", "extra", "side"];
+		for (var deckKey in decks) {
+			var cards = decks[deckKey].split('|');
+			for (var x in cards) {
+				var copies = cards[x].split('+').length,
+					cardID = cards[x].replace(/|/g, "").replace(/\+/g, "");
+				if (cardID > 0) deck[deckKeys[deckKey]][cardID] = copies;
+			}
+		}
+		return deck;
+	},
+	saveAsPrompt: function() {
+		var name = this.decks[this.deck].name,
+			insides = "",
+			id = new Date() / 1;
+		insides += '<div id="daddy' + id + '" onclick="$(\'#baby' + id + '\').remove();$(this).remove();" style="width: 100%;height: 100%;background: rgba(255, 255, 255, 0.25);cursor: pointer;position: absolute;top: 0;left:0 ;"></div>';
+		insides += '<div id="baby' + id + '" style="position: absolute;top: 50%;left: 50%;width: 300px;height: 150px;margin-left: -150px;margin-top: -75px;background: rgb(62, 84, 190); text-align: center;color: white;">';
+		insides += '<h2>SAVE DECK AS:</h2>';
+		insides += '<input type="text" id="saveDeckAs" />';
+		insides += '<button onclick="var el = $(\'#saveDeckAs\');var alertion = app.saveDeck(el.val());if (!alertion) {$(\'#daddy' + id + '\').click();} else {alert(alertion);el.val(\'\').focus();}">SAVE</button>';
+		insides += '</div>';
+		$("body").append(insides);
+		$("#baby" + id + " input").val(((name === "UNTITLED") ? "" : name)).focus().select();
+	},
+	clearDeck: function() {
+		var deck = this.decks[this.deck];
+		deck.main = {};
+		deck.side = {};
+		deck.extra = {};
+		deck.count = {};
+		deck.count.main = {};
+		deck.count.main.monster = 0;
+		deck.count.main.spell = 0;
+		deck.count.main.trap = 0;
+		deck.count.extra = 0;
+		deck.count.side = 0;
+		deck.unsaved = true;
+		this.updateCounts();
+		this.clearDeckDOM();
+	},
+	clearDeckDOM: function() {
+		$("#deckPanel .dbimg").remove();
+	},
+	deleteDeck: function() {
+		var id = this.deck;
+		var deck = this.decks[id];
+		window.top.app.socket.emit('delete deck', {
+			name: deck.name,
+			id: id
+		});
+		this.clearDeck();
+		this.decks.splice(id, 1);
+		window.top.app.decks.splice(id, 1);
+		window.top.app.deck.splice(id, 1);
+		this.loadDeck(--this.deck);
+	},
+	saveDeck: function(name) {
+		function fixName(n) {
+			var nonos = ["\\", "/", ":", "*", "?", '"', "<", ">", "|", ","];
+			for (var i in nonos) n = n.split(nonos[i]).join('');
+			return n;
+		}
+		name = fixName(name);
+		if (!name || name.toLowerCase() == "untitled") return "'" + name + "' is not a valid deck name.";
+		for (var i in app.decks) {
+			if (i == app.deck) continue;
+			if (app.decks[i].name.toLowerCase() == name.toLowerCase()) return "You already have another deck called '" + name + "'.";
+		}
+		//save it
+		var saveas = true;
+		if (this.decks[this.deck].name == name || this.decks[this.deck].name === "UNTITLED") saveas = false; 
+		
+		var deckString = this.exportDeck(this.deck);
+		if (saveas) {
+			this.newDeck(name, deckString);
+		} else {
+			this.decks[this.deck].name = name;
+		}
+		if (this.iframe) {
+			window.top.app.decks[this.deck] = name;
+			window.top.app.deck[this.deck] = deckString;
+			window.top.app.socket.emit('save deck', {
+				name: name,
+				id: this.deck,
+				deckString: deckString,
+				saveas: saveas
+			});
+		}
+		this.updateDecks();
+	},
+};
+function cardInfo(cardId) {
+	var card = app.db(cardId),
+		insides = '';
+	if (!card) return;
+	var src = app.resources + "/" + card.id + ".jpg";
+	insides += '<img draggable="false" src="' + src + '" height="66%" />';
+	insides += '<div id="leftPanelCardInfo">';
+		insides += '<center><button onclick="app.addCard(' + cardId + ', true, true);">Side Deck</button></button></center>';
+		insides += '<center><span class="selectable">' + card.name + '</span></center>';
+		insides += '<hr />';
+		insides += '<div class="selectable">';
+		insides += '[' + card.kind + '] ' + ((!card.attribute) ? "<br />" : "");
+		if (card.attribute) {
+			//monster
+			insides += card.race + '/' + card.attribute;
+			insides += '<div>';
+			insides += '[';
+				if (card.level > 12) {
+					insides += card.level;
+				} else for (var i = 0; i < card.level; i++) insides += '&#9733;';
+			insides += ']';
+			insides += ' ' + card.atk + '/' + card.def;
+			insides += '</div>';
+		}
+		insides += '<br />';
+		insides += '<div style="float: left;">' + card.description + '</div>';
+		insides += '</div>';
+	insides += '</div>';
+	$("#cardInfo").html(insides);
+}
+function cardimg(card, fancy) {
+	var img = new Image();
+	if (fancy) fancy = ""; else fancy = "/thumbnail";
+	var src = app.resources + "/" + fancy + "/" + card + ".jpg";
+		img.src = src;
+		img.draggable = false;
+		function lookup() {
+			mousingon = card;
+			function check() {
+				if (mousingon != undefined) {
+					cardInfo(mousingon);
+					lookupOff();
+				}
+			}
+			if (typeof mousingonTimeout == "undefined") mousingonTimeout = setTimeout(check, 500);
+		}
+		function lookupOff() {if (typeof mousingonTimeout != "undefined") {clearTimeout(mousingonTimeout);mousingonTimeout = undefined;mousingon = undefined;}}
+		function directLookup() {cardInfo(card);}
+		img.ontouchstart = directLookup;
+		img.onmousedown = directLookup;
+		img.onmouseover = lookup;
+		img.onmouseout = lookupOff;
+	return img;
+}
+var dingersLoop = function() {
+	setTimeout(function() {dingersLoop();}, 250)
+	for (var i in app.dingers) {
+		var deckString = window.top.app.deck[i];
+		if (deckString) {
+			//ding deck ready
+			delete app.dingers[i];
+			app.loadDeck(i);
+		}
+	}
+};
+dingersLoop();
+</script>
+</head>
+<body>
+<div id="dbContainer">
+	<div id="infoPanel" class="pano">
+		<div id="cardInfo"></div>
+		<div class="buttonLine">
+			<select id="decks" onchange="app.loadDeck(this.value);" style="margin-right: 0;width: 71%;"></select>
+			<button onclick="app.saveAsPrompt();">Save As</button>
+		</div>
+		<div class="buttonLine">
+			<button onclick="if (confirm('Are you sure you want to delete this deck?')) {app.deleteDeck();}">Delete</button>
+			<button onclick="app.newDeck();">New</button>
+			<button onclick="app.importDeckView();">Import</button>
+			<button onclick="app.exportDeckView();">Export</button>
+		</div>
+	</div>
+	<div id="deckPanel" class="pano">
+		<div id="maindeck">
+			<div class="decktitle">Main Deck:</div>
+		</div>
+		<div id="sidedeck">
+			<div class="decktitle">Side Deck:</div>
+		</div>
+		<div id="extradeck">
+			<div class="decktitle">Extra Deck:</div>
+		</div>
+	</div>
+	<div id="searchPanel" class="pano">
+		<input class="searchInput" type="text" id="search" />
+		<div id="results"></div>
+	</div>
+</div>
+<div class="exitDB" onclick="window.top.$('#builder').hide();">x</div>
+</body>
+</html>
+>>>>>>> 30f3aef14c50989fa4adbfef9706ba8e013e6b08

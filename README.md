@@ -81,6 +81,7 @@ To become an Administrator, create a file named `db.json` containing
 
 Replace `USER` with the username that you would like to become an Administrator.
 
+<<<<<<< HEAD
 ## Updating card images
 Download ygopro, they're in the YGOPRO/pics/ folder
 
@@ -97,6 +98,8 @@ run exportygoprodb.php on the webserver connected to the mysql database
 replace db.js with exportygoprodb.php output
 
 
+=======
+>>>>>>> 30f3aef14c50989fa4adbfef9706ba8e013e6b08
 ## License
 
 [MIT](LICENSE)

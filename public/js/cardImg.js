@@ -5,7 +5,11 @@ function cardImg(card, dontAnimate) {
 		"-3": "./img/sword.png"
 	};
 	var img = new Image();
+<<<<<<< HEAD
 	var src = 'http://elloworld.ddns.net/pics/' + card + '.jpg';
+=======
+	var src = 'http://ygosim.com/img/cards/' + card + '.jpg';
+>>>>>>> 30f3aef14c50989fa4adbfef9706ba8e013e6b08
 	if (card < 0) src = './img/back.png'; //this means a card was banished face down, so even though we know the id, just use the facedown image
 	if (imgs[card]) src = imgs[card];
 	img.src = src;
