@@ -1155,9 +1155,9 @@ Game.prototype.cardInfo = function(id) {
 	var card = cardInfo(id);
 	var info = '<center style="margin-top: 10px;"><h3 style="text-decoration: underline;">' + card.name + '</h3>' + '<img style="float: left;margin: 5px;" width="33%" src="' + cardImg(id, true).src + '" />' + '</center>';
 	if (card.race) {
-		info += "<strong>Type:</strong> " + card.race + " / " + card.kind + "<br />";
+		info += "<strong>Type:</strong> " + ((card.race === "0") ? "" : card.race + " / ") + card.kind + "<br />";
 	} else info += "<strong>Type:</strong> " + card.kind + "<br />";
-	if (card.attribute) info += "<strong>Attribute:</strong> " + card.attribute + "<br />";
+	if (card.attribute !== "0") info += "<strong>Attribute:</strong> " + card.attribute + "<br />";
 	if (card.atk) info += "<br /><strong>Atk/Def:</strong> " + card.atk + " / " + card.def + "<br />";
 	if (card.level) info += "<strong>Level:</strong> " + card.level + "<br />";
 	info += "<br />" + card.description;

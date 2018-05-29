@@ -312,10 +312,23 @@ function cardInfo(id) {
 	var conversion = dbConversion;
 	if (dbConvertCache[id]) return dbConvertCache[id]; else var ray = db[id];
 	if (!ray) return;
+	var searchable = [];
+	function formatDesc(str) {
+		var parts = str.split("~");
+		var formatSearch = "";
+		var formatSearchParts = parts[1].split('`');
+		for (var i in formatSearchParts) {
+			var part = formatSearchParts[i];
+			if (toId(part) === "") continue;
+			searchable.push(part);
+			formatSearch += "<br />&#x25B7; " + part;
+		}
+		return parts[0] + formatSearch;
+	}
 	dbConvertCache[id] = {
 		id: id,
 		name: ray[0],
-		description: ray[1],
+		description: formatDesc(ray[1]),
 		ot: conversion.ot[ray[2]] || (ray[2] + ""),
 		alias: ray[3],
 		archetype: conversion.archetypes[ray[4]] || (ray[4] + ""),
@@ -325,6 +338,7 @@ function cardInfo(id) {
 		level: ray[8],
 		race: conversion.races[ray[9]] || (ray[9] + ""),
 		attribute: conversion.attributes[ray[10]] || (ray[10] + ""),
+		searchable: searchable,
 		//category: ray[11], //from what i've read all it is is something to make searching for cards easier :s
 	};
 	return dbConvertCache[id];

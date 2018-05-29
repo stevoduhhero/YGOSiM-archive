@@ -804,12 +804,14 @@ function cardInfo_(cardId) {
 		insides += '<hr />';
 		insides += '<div class="selectable">';
 		insides += '[' + card.kind + '] ' + ((!card.attribute) ? "<br />" : "");
-		if (card.attribute) {
+		if (card.attribute !== "0") {
 			//monster
 			insides += card.race + '/' + card.attribute;
 			insides += '<div>';
 			insides += '[';
-				if (card.level > 12) {
+				if (card.level === 0) {
+					insides += 0;
+				} else if (card.level > 12) {
 					insides += card.level;
 				} else for (var i = 0; i < card.level; i++) insides += '&#9733;';
 			insides += ']';
