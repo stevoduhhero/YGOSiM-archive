@@ -1302,7 +1302,7 @@ $("body").on("click", ".promptOpaqueness", function() {
 	app.game.contextHover(this);
 }).on("click", ".contextMenu div", function() {
 	app.game.contextClickOption(this.innerHTML);
-}).on("click", "#youdeck, #youextra, #youbanished, #oppbanished, #yougrave, #oppgrave", function(e) {
+}).on("click", "#youdeck, #youextra, #oppextra, #youbanished, #oppbanished, #yougrave, #oppgrave", function(e) {
 	if ($(this).find('.deckCount').text() === "0") return;
 	if (this.id === "youdeck") {
 		//draw a card
@@ -1320,13 +1320,9 @@ $("body").on("click", ".promptOpaqueness", function() {
 }).on("click", ".closeList", function() {
 	$(".viewList").remove();
 	var cardList = app.game.cardList;
-	if (cardList.list === "deck" || cardList.list === "extra") {
-		//obscure the lists (only obscure extra if it belongs to your opponent)
-		if (cardList.targetPlayer.who() === "you" && cardList.list === "extra") {} else {
-			for (var i in cardList.targetPlayer[cardList.list]) {
-				cardList.targetPlayer[cardList.list][i] = -1;
-			}
-		}
+	if (cardList.list === "deck") {
+		var list = cardList.targetPlayer.deck;
+		for (var i in list) list[i] = -1;
 	}
 	app.game.context = {el: $("#youdeck")}; //just a hack, send all context stuff without a list to the "deck" list
 	app.game.contextClickOption("Close List");
@@ -1522,6 +1518,7 @@ $("#ladder").click(function() {
 		"#youSide .fieldZone img",
 		"#you10 img",
 		"#you11 img",
+		"#opp11 img",
 		"#you12 img",
 		"#Viewyou img",
 		"#Viewoppgrave img",
@@ -1531,7 +1528,9 @@ $("#ladder").click(function() {
 		"#youSide .o",
 		"#oppSide .fieldZone",
 		"#youbanished",
-		"#youhand"
+		"#youhand",
+		"#you11",
+		"#opp11"
 	];
 	$("body").on("mousedown touchstart", draggables.join(','), function(touch) {
 		var e = touch;
@@ -1835,7 +1834,7 @@ function Game(data) {
 			$(".viewList").remove();
 			var cardList = '<div id="View' + targetPlayer.who() + ((list === "grave" && targetPlayer.who() === "opp") ? list : '') + '" class="viewList">' +
 								'<div class="rel">' +
-									'<div class="viewListTitle">' + status.replace('their', 'your') + '</div>' +
+									'<div class="viewListTitle">' + status.replace(whoseDeck, ((this.who() === targetPlayer.who()) ? 'your' : 'opposing')) + '</div>' +
 									'<div class="closeList">x</div>' +
 									'<div class="cardList">' +
 									'</div>' +
@@ -1895,7 +1894,12 @@ Game.prototype.resize = function() {
 	if (gameChatHeight < minGameChatHeight) gameChatHeight = minGameChatHeight;
 	$(".gameLogs").height(gameChatHeight - 34 - 10);
 	$(".gameChat").height(gameChatHeight);
+	$(".phases").css({
+		top: $(".middleOptions").position().top,
+		height: $(".middleOptions").height()
+	});
 	$(".phase").css("line-height", $(".phase").height() + "px");
+	$("#dp").css("marginLeft", $("#you0").position().left - $("#dp").width());
 };
 Game.prototype.parseStartData = function(data, reset) {
 	var you = data[1];
@@ -2053,7 +2057,7 @@ Game.prototype.updateListViewer = function() {
 	if (!this.cardList) return;
 	var targetPlayer = this.cardList.targetPlayer;
 	var list = this.cardList.list;
-	targetPlayer.viewList(targetPlayer, list, targetPlayer[list]);
+	this.you.viewList(targetPlayer, list, targetPlayer[list]);
 };
 Game.prototype.update = function(info) {
 	var player = this[info.who];
@@ -2079,6 +2083,7 @@ Game.prototype.update = function(info) {
 		for (var i = 0; i < len; i++) {
 			info.slot = i;
 			var cardEl = $(player.cardImg(info));
+			//if (info.slot === 11) cardEl.removeClass("v"); && your card
 			if (cardsAttached) {
 				var lefty = (cardSpacing * i);
 				cardEl.css({

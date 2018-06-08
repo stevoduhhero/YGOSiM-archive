@@ -335,6 +335,7 @@ var app = {
 		if (info.kind.split('Synchro').length - 1 > 0) todeck = "extra";
 		if (info.kind.split('XYZ').length - 1 > 0) todeck = "extra";
 		if (info.kind.split('Fusion').length - 1 > 0) todeck = "extra";
+		if (info.kind.split('Link').length - 1 > 0) todeck = "extra";
 		if (side) todeck = "side";
 		if (!deck[todeck][card]) deck[todeck][card] = 0;
 		if (deckChanged) {

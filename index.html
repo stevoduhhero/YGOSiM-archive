@@ -76,23 +76,35 @@
 					<div class="oppBanishedZone o" id="oppbanished"></div>
 				</div>
 				<div class="row mainTable unselectable">
+				<div class="field phases">
+					<div id="dp" class="phase">DP</div>
+					<div id="sp" class="phase">SP</div>
+					<div id="m1" class="phase">M1</div>
+					<div class="fieldZone row o" id="opp11"></div>
+					<div id="bp" class="phase">BP</div>
+					<div id="m2" class="phase">M2</div>
+					<div class="fieldZone row o" id="you11"></div>
+					<div id="ep" class="phase">EP</div>
+					<div id="nextTurn" class="phase">Next Turn</div>
+				</div>
 					<div id="opphand"></div>
 					<div id="youhand"></div>
 					<!-- just a little bit of room so that i can put the #opphand here !-->
+					<!-- you/opp zones 11 & 12 are ex pendulum zones !-->
 					<div class="fieldHandSpacer row"></div>
 					<div id="oppSide" class="fieldContainer row">
 						<div class="threeVerticalZones row">
 							<div class="singleVerticalZone row o" id="oppdeck"></div>
-							<div class="oppredpendulum singleVerticalZone row o" id="opp12"></div>
 							<div class="singleVerticalZone row o" id="oppgrave"></div>
+							<div class="singleVerticalZone row"></div>
 						</div>
 						<div class="monsterSpellZones row">
 							<div class="monsterSpellZonesDivison row">
-								<div class="fieldZone row o" id="opp9"></div>
+								<div class="oppredpendulum fieldZone row o" id="opp9"></div>
 								<div class="fieldZone row o" id="opp8"></div>
 								<div class="fieldZone row o" id="opp7"></div>
 								<div class="fieldZone row o" id="opp6"></div>
-								<div class="fieldZone row o" id="opp5"></div>
+								<div class="oppbluependulum fieldZone row o" id="opp5"></div>
 							</div>
 							<div class="monsterSpellZonesDivison row">
 								<div class="fieldZone row o" id="opp4"></div>
@@ -102,21 +114,21 @@
 								<div class="fieldZone row o" id="opp0"></div>
 							</div>
 							<div class="middleOptions">
-								<div class="field phases"><div id="dp" class="phase">DP</div><div id="sp" class="phase">SP</div><div id="m1" class="phase">M1</div><div id="bp" class="phase">BP</div><div id="m2" class="phase">M2</div><div id="ep" class="phase">EP</div><div id="nextTurn" class="phase">Next Turn</div></div>
+								<!-- used to hold phases !-->
 							</div>
 							<div id="youstatus" class="status"></div>
 							<div id="oppstatus" class="status"></div>
 						</div>
 						<div class="threeVerticalZones row">
 							<div class="singleVerticalZone row o" id="oppextra"></div>
-							<div class="oppbluependulum singleVerticalZone row o" id="opp11"></div>
 							<div class="singleVerticalZone row o" id="opp10"></div>
+							<div class="singleVerticalZone row"></div>
 						</div>
 					</div>
 					<div id="youSide" class="fieldContainer row">
 						<div class="threeVerticalZones row">
+							<div class="singleVerticalZone row"></div>
 							<div class="singleVerticalZone row o" id="you10"></div>
-							<div class="youbluependulum singleVerticalZone row o" id="you11"></div>
 							<div class="singleVerticalZone row o" id="youextra"></div>
 						</div>
 						<div class="monsterSpellZones row">
@@ -128,16 +140,16 @@
 								<div class="fieldZone row o" id="you4"></div>
 							</div>
 							<div class="monsterSpellZonesDivison row">
-								<div class="fieldZone row o" id="you5"></div>
+								<div class="youbluependulum fieldZone row o" id="you5"></div>
 								<div class="fieldZone row o" id="you6"></div>
 								<div class="fieldZone row o" id="you7"></div>
 								<div class="fieldZone row o" id="you8"></div>
-								<div class="fieldZone row o" id="you9"></div>
+								<div class="youredpendulum fieldZone row o" id="you9"></div>
 							</div>
 						</div>
 						<div class="threeVerticalZones row">
+							<div class="singleVerticalZone row"></div>
 							<div class="singleVerticalZone row o" id="yougrave"></div>
-							<div class="youredpendulum singleVerticalZone row o" id="you12"></div>
 							<div class="singleVerticalZone row o" id="youdeck"></div>
 						</div>
 					</div>

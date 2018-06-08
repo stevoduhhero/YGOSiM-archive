@@ -34,7 +34,7 @@ $("body").on("click", ".promptOpaqueness", function() {
 	app.game.contextHover(this);
 }).on("click", ".contextMenu div", function() {
 	app.game.contextClickOption(this.innerHTML);
-}).on("click", "#youdeck, #youextra, #youbanished, #oppbanished, #yougrave, #oppgrave", function(e) {
+}).on("click", "#youdeck, #youextra, #oppextra, #youbanished, #oppbanished, #yougrave, #oppgrave", function(e) {
 	if ($(this).find('.deckCount').text() === "0") return;
 	if (this.id === "youdeck") {
 		//draw a card
@@ -52,13 +52,9 @@ $("body").on("click", ".promptOpaqueness", function() {
 }).on("click", ".closeList", function() {
 	$(".viewList").remove();
 	var cardList = app.game.cardList;
-	if (cardList.list === "deck" || cardList.list === "extra") {
-		//obscure the lists (only obscure extra if it belongs to your opponent)
-		if (cardList.targetPlayer.who() === "you" && cardList.list === "extra") {} else {
-			for (var i in cardList.targetPlayer[cardList.list]) {
-				cardList.targetPlayer[cardList.list][i] = -1;
-			}
-		}
+	if (cardList.list === "deck") {
+		var list = cardList.targetPlayer.deck;
+		for (var i in list) list[i] = -1;
 	}
 	app.game.context = {el: $("#youdeck")}; //just a hack, send all context stuff without a list to the "deck" list
 	app.game.contextClickOption("Close List");
@@ -254,6 +250,7 @@ $("#ladder").click(function() {
 		"#youSide .fieldZone img",
 		"#you10 img",
 		"#you11 img",
+		"#opp11 img",
 		"#you12 img",
 		"#Viewyou img",
 		"#Viewoppgrave img",
@@ -263,7 +260,9 @@ $("#ladder").click(function() {
 		"#youSide .o",
 		"#oppSide .fieldZone",
 		"#youbanished",
-		"#youhand"
+		"#youhand",
+		"#you11",
+		"#opp11"
 	];
 	$("body").on("mousedown touchstart", draggables.join(','), function(touch) {
 		var e = touch;

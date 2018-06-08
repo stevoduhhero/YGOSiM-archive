@@ -86,7 +86,7 @@ function Game(data) {
 			$(".viewList").remove();
 			var cardList = '<div id="View' + targetPlayer.who() + ((list === "grave" && targetPlayer.who() === "opp") ? list : '') + '" class="viewList">' +
 								'<div class="rel">' +
-									'<div class="viewListTitle">' + status.replace('their', 'your') + '</div>' +
+									'<div class="viewListTitle">' + status.replace(whoseDeck, ((this.who() === targetPlayer.who()) ? 'your' : 'opposing')) + '</div>' +
 									'<div class="closeList">x</div>' +
 									'<div class="cardList">' +
 									'</div>' +
@@ -146,7 +146,12 @@ Game.prototype.resize = function() {
 	if (gameChatHeight < minGameChatHeight) gameChatHeight = minGameChatHeight;
 	$(".gameLogs").height(gameChatHeight - 34 - 10);
 	$(".gameChat").height(gameChatHeight);
+	$(".phases").css({
+		top: $(".middleOptions").position().top,
+		height: $(".middleOptions").height()
+	});
 	$(".phase").css("line-height", $(".phase").height() + "px");
+	$("#dp").css("marginLeft", $("#you0").position().left - $("#dp").width());
 };
 Game.prototype.parseStartData = function(data, reset) {
 	var you = data[1];
@@ -304,7 +309,7 @@ Game.prototype.updateListViewer = function() {
 	if (!this.cardList) return;
 	var targetPlayer = this.cardList.targetPlayer;
 	var list = this.cardList.list;
-	targetPlayer.viewList(targetPlayer, list, targetPlayer[list]);
+	this.you.viewList(targetPlayer, list, targetPlayer[list]);
 };
 Game.prototype.update = function(info) {
 	var player = this[info.who];
@@ -330,6 +335,7 @@ Game.prototype.update = function(info) {
 		for (var i = 0; i < len; i++) {
 			info.slot = i;
 			var cardEl = $(player.cardImg(info));
+			//if (info.slot === 11) cardEl.removeClass("v"); && your card
 			if (cardsAttached) {
 				var lefty = (cardSpacing * i);
 				cardEl.css({

@@ -95,11 +95,14 @@
 	opacity: 1 !important;
 }
 .phases {
-	width: 100%;
-	height: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 41%;
+    z-index: 9998;
 }
 .phase {
-	width: 13.67%;
+	width: 7.2%;
 	height: 100%;
 	float: left;
 	text-align: center;
@@ -108,10 +111,10 @@
 	font-weight: bold;
 	opacity: 0.3;
 	line-height: 5;
-	outline: 1px solid rgb(74, 74, 74);
+	outline: 1px solid white;
 }
 #nextTurn {
-	width: 17.69%;
+	width: 12%;
 	margin-left: 0;
 	background: red;
 	overflow: hidden;
@@ -229,11 +232,11 @@
 	text-shadow: 0.05em 0.05em black;
 	outline: none;
 	font-weight: bold;
-	background: rgb(6, 15, 49);
+	background: #0c237b;
 	border-radius: 20px;
-  font-size: 10px;
-  color: rgb(174, 174, 174);
-  padding-top: 10px;
+	font-size: 10px;
+	color: rgb(174, 174, 174);
+	padding-top: 10px;
 }
 #youpoints small, #opppoints small {
 	font-size: 12px;
@@ -244,11 +247,11 @@
 #youpoints {
 	left: auto !important;
 	right: -2px !important;
-  bottom: 10%;
-  top: auto;
+	bottom: 10%;
+	top: auto;
 }
 #opppoints {
-	background: rgb(100, 15, 6);
+	background: #af382c;
 }
 #youpoints span, #opppoints span {
 	color: white;
@@ -259,6 +262,9 @@
 /* game cells / zones separation and sizing */
 .fieldZone {
 	width: 20%;
+}
+.phases .fieldZone {
+	width: 14.8%;
 }
 .threeVerticalZones {
 	height: 100%;
@@ -292,11 +298,11 @@
 	height: 14.166666%;
 	width: 100%;
 	position: absolute;
-	top: 33.5%;
+	top: 19%;
 	left: -3px;
 }
 .youBanishedZone {
-	top: 47.5%;
+	top: 61.5%;
 	left: 3px;
 }
 .mainTable {
@@ -308,10 +314,16 @@
 	position: relative;
 }
 .youredpendulum, .oppredpendulum {
-	outline: 1px solid red;
+    background-image: url(https://vignette.wikia.nocookie.net/yugioh/images/4/48/Pendulum_Scales.png/revision/latest/scale-to-width-down/300?cb=20140603103842);
+    background-size: 200%;
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
 }
 .youbluependulum, .oppbluependulum {
-	outline: 1px solid blue;
+    background-image: url(https://vignette.wikia.nocookie.net/yugioh/images/4/48/Pendulum_Scales.png/revision/latest/scale-to-width-down/300?cb=20140603103842);
+    background-size: 200%;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
 }
 .dropTarget {
 	background: rgba(255, 255, 255, 0.5);
@@ -337,7 +349,7 @@
 	text-shadow: 1px 3px 4px black;
 	text-align: center;
 }
-#youdeck, #youextra, #youbanished, #oppbanished, #yougrave, #oppgrave {
+#youdeck, #youextra, #oppextra, #youbanished, #oppbanished, #yougrave, #oppgrave {
 	cursor: pointer;
 	z-index: 2;
 }
@@ -391,7 +403,7 @@
 	margin-left: -232.5px;
 	margin-top: -87.5px;
 	outline: 1px dashed white;
-	z-index: 2;
+	z-index: 9998;
 	cursor: default;
 }
 .rps img {
@@ -424,7 +436,7 @@
 	height: 100px;
 	margin-top: -50px;
 	top: 50%;
-	z-index: 2;
+	z-index: 9998;
 	text-align: center;
 }
 #whoGo  button {
