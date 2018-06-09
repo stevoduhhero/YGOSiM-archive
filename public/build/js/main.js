@@ -2813,7 +2813,7 @@ Game.prototype.contextHover = function(el) {
 	} else {
 		if (isNaN(id) || !el.html()) return;
 		var zone = Number(id);
-		if (app.game.phase === "bp" && zone >= 0 && zone <= 4) options.push("Attack");
+		if (app.game.phase === "bp" && ((zone >= 0 && zone <= 4) || zone === 11)) options.push("Attack");
 		options.push("Rotate", "Flip");
 	}
 	if (!isHand && oldList && oldList === options.join('')) return;
