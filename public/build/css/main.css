@@ -1117,7 +1117,18 @@ table {
 	width: 20%;
 }
 .phases .fieldZone {
+	width: 100%;
+	outline: none;
+}
+.zoneShrinker {
 	width: 14.8%;
+	height: 100%;
+	overflow: hidden;
+	float: left;
+	outline: 1px solid white;
+}
+.zoneShrinker:hover {
+	overflow: initial;
 }
 .threeVerticalZones {
 	height: 100%;
@@ -1179,7 +1190,7 @@ table {
     background-repeat: no-repeat;
 }
 .dropTarget {
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.5) !important;
 }
 .deckCount {
 	position: absolute;
@@ -1396,7 +1407,6 @@ table {
 .fieldZone span {
 	width: 100%;
 	position: absolute;
-	bottom: 0;
 	left: 0;
 	color: white;
 	text-shadow: 2px 2px black;
@@ -1639,3 +1649,12 @@ table {
 	font-size: 23px;
 	white-space: normal;
 }
+/* link zones */
+#opp11, #you11 {background: transparent;}
+#you11 span {top: 39%;}
+#opp11:hover img {transform: scaleX(1.75) scaleY(-1.75);}
+#opp11:active img {transform: scaleX(1) scaleY(-1);}
+#you11:hover img {transform: scaleX(1.75) scaleY(1.75);}
+#you11:active img {transform: scaleX(1) scaleY(1);}
+#you11:hover span, #opp11:hover span {display: none;}
+#you11:active span, #opp11:active span {display: block;}

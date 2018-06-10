@@ -1900,6 +1900,7 @@ Game.prototype.resize = function() {
 	});
 	$(".phase").css("line-height", $(".phase").height() + "px");
 	$("#dp").css("marginLeft", $("#you0").position().left - $("#dp").width());
+	$(".phases .fieldZone").height($("#you0").height());
 };
 Game.prototype.parseStartData = function(data, reset) {
 	var you = data[1];
@@ -2108,7 +2109,16 @@ Game.prototype.update = function(info) {
 		if (len) {
 			var card = player.field[info.zone][0];
 			var stats = cardInfo(card.id);
-			if ((card.pos === 0 || card.pos === 1) && stats.atk && el.hasClass("fieldZone")) el.append('<span>' + stats.atk + ' / ' + stats.def + '</span>');
+			if ((card.pos === 0 || card.pos === 1) && (stats.atk || stats.def) && el.hasClass("fieldZone")) {
+				var pos = 'bottom: 0;';
+				if (player.who() === "opp") pos = 'top: 0;';
+				var atk = stats.atk;
+				var def = ' / ' + stats.def;
+				if (stats.kind.split('Link').length - 1 > 0) def = '';
+				if (stats.def < 0) def = '';
+				if (stats.atk < 0) atk = '?';
+				el.append('<span style="' + pos + '">' + atk + def + '</span>');
+			}
 		}
 	} else if (info.list === "hand") {
 		var revealedCards = false;
@@ -2912,7 +2922,7 @@ Game.prototype.cardInfo = function(id) {
 		info += "<strong>Type:</strong> " + ((card.race === "0") ? "" : card.race + " / ") + card.kind + "<br />";
 	} else info += "<strong>Type:</strong> " + card.kind + "<br />";
 	if (card.attribute !== "0") info += "<strong>Attribute:</strong> " + card.attribute + "<br />";
-	if (card.atk) info += "<br /><strong>Atk/Def:</strong> " + card.atk + " / " + card.def + "<br />";
+if (card.atk || card.def) info += "<br /><strong>Atk/Def:</strong> " + card.atk + " / " + card.def + "<br />";
 	if (card.level) info += "<strong>Level:</strong> " + card.level + "<br />";
 	info += "<br />" + card.description;
 	return info;
