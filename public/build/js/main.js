@@ -1321,7 +1321,7 @@ $("body").on("click", ".promptOpaqueness", function() {
 	$(".viewList").remove();
 	var cardList = app.game.cardList;
 	if (cardList.list === "deck") {
-		var list = cardList.targetPlayer.deck;
+		var list = cardList.targetPlayer[list];
 		for (var i in list) list[i] = -1;
 	}
 	app.game.context = {el: $("#youdeck")}; //just a hack, send all context stuff without a list to the "deck" list
@@ -1639,7 +1639,7 @@ function cardImg(card, dontAnimate) {
 		"-3": "./img/sword.png"
 	};
 	var img = new Image();
-	var src = 'http://elloworld.ddns.net/pics/' + card + '.jpg';
+	var src = 'http://elloworld.ddns.net/__!!nongit/pics/' + card + '.jpg';
 	if (card < 0) src = './img/back.png'; //this means a card was banished face down, so even though we know the id, just use the facedown image
 	if (imgs[card]) src = imgs[card];
 	img.src = src;
@@ -2225,7 +2225,7 @@ Game.prototype.rpsReceive = function(rps) {
 		});
 		app.game.rps = undefined;
 		if (rps != "s") app.game.rps = rps;
-	}	
+	}
 };
 Game.prototype.rpsChoose = function(item) {
 	var item = item + '';

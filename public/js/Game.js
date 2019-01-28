@@ -477,7 +477,7 @@ Game.prototype.rpsReceive = function(rps) {
 		});
 		app.game.rps = undefined;
 		if (rps != "s") app.game.rps = rps;
-	}	
+	}
 };
 Game.prototype.rpsChoose = function(item) {
 	var item = item + '';
