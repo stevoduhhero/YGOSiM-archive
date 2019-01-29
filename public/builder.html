@@ -231,7 +231,7 @@ body, html {
 }
 </style>
 <script>var exports = new Object();</script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $(function() {
 	function doneLoading() {
@@ -293,7 +293,7 @@ $(function() {
 	}
 });
 var app = {
-	resources: "http://elloworld.ddns.net/__!!nongit/pics",
+	resources: window.location.protocol + "//elloworld.ddns.net/__!!nongit/pics",
 	//make sure dbFunctionCache and db app are the same as on app.js 
 	dbFunctionCache: new Object(),
 	dingers: new Object(), //decks we're waiting to load
