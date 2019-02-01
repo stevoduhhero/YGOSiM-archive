@@ -177,25 +177,96 @@ table {
 	background: #e6e6e6;
 	outline: 1px solid #b6b6b6;
 }
+footer {
+	position: absolute;
+    bottom: 2px;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    font-size: 1em;
+}
 .header {
 	height: 50px;
 	background: rgb(27, 27, 27);
 }
 .header h1 {
-	color: white;
-	text-shadoW: 2px 2px 0px rgb(83, 19, 19);
 	padding-top: 8px;
 	margin-left: 5px;
+}
+.header h1 a {
+	color: white;
+	text-shadoW: 2px 2px 0px rgb(83, 19, 19);
 	transition: color 0.2s ease-in-out;
 }
-.header h1:hover, .header h1:active {color: #daa5a5;}
-.header a {text-decoration: none;}
-.chat {
+.header h1 a:hover, .header h1 a:active {color: #daa5a5;}
+.header h1 a {text-decoration: none;}
+.options {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    background: #d50039;
+    background-image: linear-gradient(#d50039, #dd5378, #8f6666);
+    outline: 1px inset white;
+    cursor: pointer;
+    font-size: 3em;
+	text-align: center;
+	transition: all 0.2s ease-in-out;
+}
+.options:active {
+    background-image: linear-gradient(#d50039, #dd5378, #8f6666) !important;
+}
+.options:hover {
+    background-image: linear-gradient(#8f6666, #dd5378, #d50039);
+	color: white;
+}
+.optionsMenu {
+	position: absolute;
+	top: 50px;
+	right: 0;
+	width: 50%;
+	height: 0px;
+	background: rgba(218, 51, 96, 0.93);
+	outline: 1px solid black;
+	z-index: 1;
+	display: none;
+	opacity: 0;
+}
+.chat, .roomsMenu {
 	width: 100%;
 	height: 300px;
 	position: relative;
 	background: rgb(140, 140, 140);
 	outline: 1px solid #b6b6b6;
+	display: block;
+}
+.roomsMenu {display: none;text-align: center;}
+.roomsMenu h2 {
+    background: #d4d4d4;
+	color: #652e2e;
+}
+.roomsMenu .room {
+    width: 380px;
+    min-height: 50px;
+    margin-top: 0;
+    display: inline-block;
+    margin: 2px 7px 4px;
+    padding: 1px 4px 2px;
+    border: 1px solid #bcd;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    color: #933;
+    cursor: pointer;
+    font-size: 10pt;
+    overflow: hidden;
+}
+.roomsMenu .room:hover {
+    background: #af6866;
+	color: white;
+}
+.roomTitle {
+	font-size: 12pt;
 }
 .logs {
 	float: left;
@@ -308,19 +379,23 @@ table {
 	background: rgb(130, 0, 0);
 }
 #roomadd {
-	width: auto;
-	height: auto;
-	background: rgb(51, 51, 51);
-	padding: 2px 5px;
-	border: none;
-	font-size: 20px;
-	color: white;
+    width: auto;
+    height: auto;
+    background: #333;
+    padding: 2px 5px;
+    border: none;
+    font-size: 20px;
+	color: #fff;
 	font-weight: bold;
-	opacity: 1;
-	margin-left: 5px;
-	margin-top: 4px;
-	border-radius: 5px;
-	text-shadow: 0px 1px 0px white;
+    opacity: 1;
+    margin-left: 1px;
+    margin-top: 7px;
+    border-radius: 5px;
+    text-shadow: 0 1px 0 #fff;
+}
+#roomadd:hover {
+    background: #8c8c8c;
+    box-shadow: 1px 1px 1px black;
 }
 .userbar {
 	background: #fff;
@@ -329,11 +404,15 @@ table {
 	margin: -3px;
 	position: absolute;
 	top: 14px;
-	right: 14px;
+	right: 64px;
 	font-weight: bold;
 	border-radius: 10px;
 	cursor: default;
 }
+.userbar button {
+	margin-top: -4px;
+}
+
 .opaqueness {
 	position: absolute;
 	top: 0;

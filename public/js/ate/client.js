@@ -17,6 +17,7 @@ var ate = {
 	init: function() {
 		app = this;
 		app.notifications = 0;
+		app.knownRooms = {};
 		app.baseTitle = document.title;
 		app.clearNotifications = function() {
 			this.notifications = 0;
@@ -314,7 +315,28 @@ var ate = {
 				if (!helpers.isMobile()) $('.message').focus();
 			}
 		};
-		
+		app.loadRooms = function() {
+			var buff = '<h2>Rooms</h2><hr />';
+			for (var roomid in this.knownRooms) {
+				var room = this.knownRooms[roomid];
+				buff += '<div class="room" onclick="app.chooseRoom(\' ' + roomid + '\');">';
+				buff += '<div class="roomTitle">' + room.title + ' - ' + room.userCount + ' Users Online</div>' + room.desc;
+				buff += '</div>';
+			}
+			$('.roomsMenu').html(buff);
+		};
+		app.roomMenu = function() {
+			$('.chat').hide();
+			$('.roomsMenu').show()
+			this.loadRooms();
+			this.socket.emit('rooms');
+		};
+		app.chooseRoom = function(id) {
+			$('.roomsMenu').hide();
+			$('.chat').show();
+			app.rooms.global.send('/join ' + id);
+		};
+
 		inputFocus = undefined;
 		this.resize();
 		this.updateHeader();
@@ -322,12 +344,12 @@ var ate = {
 		var globalRoom = this.createRoom("Global");
 		globalRoom.focusRoom();
 		if (!helpers.isMobile()) $('.message').focus();
-		
+
 		ate.initial = {
 			width: $("body").width(),
 			height: $("body").height()
 		};
-		
+
 		var t = new Date() / 1;
 		var refreshLatency = 2.5 * 1000;
 		var difference = t - Number(cookie("lastVisit"));
@@ -445,7 +467,7 @@ var ate = {
 				}
 			}
 			if (this.$button) this.$button.remove();
-			delete ate.rooms[this];
+			delete ate.rooms[toId(this.title)];
 		};
 		Room.prototype.focusRoom = function() {
 			ate.focusedRoom = this;
@@ -686,9 +708,12 @@ var ate = {
 		Room.prototype.addButton = function() {
 			var roomCount = $(".rooms .rel").length - 1; //-1 bcos the add room button counts
 			this.$button = buff = $('<div class="rel"><h4>' + title + '</h4><span>x</span></div>');
+			/*
 			if (roomCount === 0) {
 				$('.rooms').prepend(buff);
 			} else $('.rooms .rel').last().before(buff);
+			*/
+			$('.rooms').append(buff);
 		};
 		Room.prototype.send = function(msg) {
 			this.sent.push(msg);
@@ -765,7 +790,7 @@ var ate = {
 		var chatHeight = $("body").height() - (headerHeight + roomsHeight);
 		var logsWidth = leftSideWidth - usersWidth;
 		var logsHeight = chatHeight - inputHeight;
-		$(".chat").height(chatHeight);
+		$(".chat, .roomsMenu").height(chatHeight);
 		$(".logs").height(logsHeight).width(logsWidth);
 		$(".input").width(logsWidth);
 		
@@ -911,6 +936,9 @@ var ate = {
 			}
 		}).on("click", ".rooms .rel span", function() {
 			ate.rooms[toId($(this).parent().find('h4').text())].send('/leave');
+			if (Object.keys(ate.rooms).length - 1 - 1 === 0) ate.roomMenu(); //1 for global, 1 for the room about to leave (bcos must receive deinit first)
+		}).on("click", "#roomadd", function() {
+			ate.roomMenu();
 		}).on("focus", "input, textarea", function() {
 			inputFocus = this;
 		}).on("blur", "input, textarea", function() {
@@ -985,6 +1013,11 @@ var ate = {
 				};
 			}
 			popup.css(css);
+		}).on("click", ".options", function() {
+			//hide
+			if (Number($('.optionsMenu').css('opacity'))) return $('.optionsMenu').animate({opacity: 0, height: '0px'}, 1000);
+			//show
+			$('.optionsMenu').css('display', 'block').animate({opacity: 1, height: '300px'}, 1000);
 		});
 		$(document).on("mousemove touchmove", function(touch) {
 			//dragging

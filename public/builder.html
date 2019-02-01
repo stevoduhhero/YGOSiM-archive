@@ -229,6 +229,21 @@ body, html {
 	cursor: pointer;
 	line-height: 6px;
 }
+.expandCollapse {
+    position: absolute;
+    top: 0;
+    left: 26%;
+    z-index: 1;
+    cursor: pointer;
+    background: #373636e0;
+    border-radius: 100px;
+    width: 38px;
+    margin-left: -19px;
+	height: 100%;
+}
+.expandCollapse:hover {
+	opacity: 0.5;
+}
 </style>
 <script>var exports = new Object();</script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -257,6 +272,24 @@ $(function() {
 				if (app.decks.length == 0) load = -1; //we have no first deck to load
 				app.loadDeck(load);
 			}
+		});
+		$('.expandCollapse').click(function() {
+			function toggle(show) {
+				var plusminus = 1;
+				if (show) plusminus = -1;
+				$('#deckPanel').css('width', (Number($('#deckPanel').width()/$("#deckPanel").parent().width()*100 + 12.5*plusminus) + '%'));
+				$('#searchPanel').css('width', (Number($('#searchPanel').width()/$("#searchPanel").parent().width()*100 + 12.5*plusminus) + '%'));
+			}
+			if ($('#infoPanel').css('display') === 'none') { //show
+				this.style.left = '26%';
+				toggle(true);
+				$('#infoPanel').show();
+				return;
+			}
+			//hide
+			$('#infoPanel').hide();
+			this.style.left = '1%';
+			toggle();
 		});
 		cardInfo_(40640057);
 		app.search("");
@@ -896,5 +929,6 @@ dingersLoop();
 	</div>
 </div>
 <div class="exitDB" onclick="window.top.$('#builder').hide();">x</div>
+<div class="expandCollapse"></div>
 </body>
 </html>

@@ -78,6 +78,20 @@ Socket.prototype.events = {
 	banned: function() {
 		$("body").append("<div style='position: absolute;top: 50%;left: 50%;z-index: 9999;width: 150px;height: 77px;margin-top: -38.5px;margin-left: -75px;background: black;text-align: center;'><h1><font color='red'>You're banned.</font></h1></div>");
 	},
+	rooms: function(data) {
+		var userCount = data[1];
+		var gameCouint = data[2];
+		data.splice(0, 1);data.splice(0, 1);data.splice(0, 1);
+		for (var i in data) {
+			var room = data[i].split('~');
+			app.knownRooms[toId(room[1])] = {
+				userCount: Number(room[0]),
+				title: room[1],
+				desc: room[2]
+			};
+		}
+		app.loadRooms();
+	},
 	init: function(data) {
 		data.splice(0, 1);
 		var splint = data.join('|').split('\n');
