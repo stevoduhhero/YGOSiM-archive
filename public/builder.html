@@ -119,7 +119,7 @@ body, html {
 	outline: 1px solid #4A4A4A;
 	padding: 1%;
 	margin-top: 1%;
-	font-size: 16px;
+	font-size: 0.8em;
 	overflow-y: auto;
 }
 #leftPanelCardInfo button {
@@ -231,20 +231,21 @@ body, html {
 }
 .expandCollapse {
     position: absolute;
-    top: 0;
+    top: 20px;
     left: 26%;
+    width: 22px;
+	height: calc(71% - 20px);
+    margin-left: -11px;
     z-index: 1;
-    cursor: pointer;
+	cursor: pointer;
     background: #373636e0;
-    border-radius: 100px;
-    width: 38px;
-    margin-left: -19px;
-	height: 100%;
+	border-radius: 100px;
 }
 .expandCollapse:hover {
-	opacity: 0.5;
+	background: #9a9a9a;
 }
 </style>
+<style id="collapsedStyle"></style>
 <script>var exports = new Object();</script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -277,18 +278,23 @@ $(function() {
 			function toggle(show) {
 				var plusminus = 1;
 				if (show) plusminus = -1;
+				$('#deckPanel').css('margin-left', (show ? 0 : 2) + '%');
 				$('#deckPanel').css('width', (Number($('#deckPanel').width()/$("#deckPanel").parent().width()*100 + 12.5*plusminus) + '%'));
 				$('#searchPanel').css('width', (Number($('#searchPanel').width()/$("#searchPanel").parent().width()*100 + 12.5*plusminus) + '%'));
 			}
 			if ($('#infoPanel').css('display') === 'none') { //show
+				$('#collapsedStyle').empty();
 				this.style.left = '26%';
+				this.style.padding = '';
 				toggle(true);
 				$('#infoPanel').show();
 				return;
 			}
 			//hide
+			$('#collapsedStyle').html('#results img {margin: 0;width: 25%;} .dbimg img {width: 100%;} #results {overflow-y: scroll;}');
 			$('#infoPanel').hide();
 			this.style.left = '1%';
+			this.style.padding = '0.5%'; //make 1% bigger
 			toggle();
 		});
 		cardInfo_(40640057);
@@ -881,6 +887,11 @@ function cardimg(card, pictureType) {
 	img.onmousedown = directLookup;
 	img.onmouseover = lookup;
 	img.onmouseout = lookupOff;
+	img.swipeCounter = 0;
+	img.ontouchend = function() {this.swipeCounter = 0;};
+	img.ontouchmove = function(event) { //prevent chrome gesture refresh, swipe up on mobile
+		if (++this.swipeCounter > 1) event.preventDefault();
+	};
 	return img;
 }
 var dingersLoop = function() {

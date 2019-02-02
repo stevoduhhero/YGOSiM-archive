@@ -922,7 +922,7 @@ footer {
 	height: 150px;
 	margin-left: -150px;
 	margin-top: -75px;
-	background: rgb(101, 101, 101);
+	background: #3d3232;
 	text-align: center;
 	color: white;
 	z-index: 99999;
