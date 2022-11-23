@@ -38,7 +38,7 @@
         "lowdb": "^1.0.0",
         "mongoose": "^5.4.7",
         "morgan": "^1.9.0",
-        "socket.io": "^2.2.0"
+        "socket.io": "^2.5.0"
     },
     "devDependencies": {
         "grunt": "^0.4.5",
